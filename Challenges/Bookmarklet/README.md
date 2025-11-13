@@ -1,10 +1,6 @@
-# Bookmarklet
+# Bookmarklet — Web Challenge  
 **Category:** Web Exploitation  
 **Difficulty:** Easy  
 
-## Overview
-Bookmarklet is a web challenge based on discovering malicious or hidden JavaScript embedded inside a bookmarklet.  
-The webpage provides a button or a link containing a JavaScript-based bookmarklet.  
-When inspected carefully, the encoded script reveals the actual URL or text containing the flag.
-
-The goal is to decode the bookmarklet and identify the hidden flag inside the script.
+This challenge provides a simple Flask web application where the user interacts with a **bookmarklet** to request files from the server.  
+The backend attempts to restrict file access using a custom `safe_join()` function — but due to flawed path validation, the challenge is vulnerable to **directory traversal**.
