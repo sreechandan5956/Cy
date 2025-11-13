@@ -8,5 +8,3 @@ The webpage provides a button or a link containing a JavaScript-based bookmarkle
 When inspected carefully, the encoded script reveals the actual URL or text containing the flag.
 
 The goal is to decode the bookmarklet and identify the hidden flag inside the script.
-
-## Structure
