@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaderboard - CyTutor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="styles/global.css">
+  <link rel="stylesheet" href="styles/app.css">
+  <link rel="stylesheet" href="styles/accessibility.css">
+  <link rel="stylesheet" href="styles/loading-states.css">
+</head>
+<body>
+  <div class="page-wrapper">
+  <canvas id="particles-bg"></canvas>
+
+  <header>
+    <div class="container">
+      <h1><a href="dashboard.html">CyTutor</a></h1>
+      <nav>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="challenges.html">Challenges</a>
+        <a href="domains.html">Learning Paths</a>
+        <a href="leaderboard.html" class="active">Leaderboard</a>
+      </nav>
+      <div class="header-right">
+        <div class="user-menu">
+          <div class="user-profile-toggle">
+            <div class="user-avatar">JD</div>
+            <span class="user-name">John Doe</span>
+            <i data-lucide="chevron-down"></i>
+          </div>
+          <div class="dropdown-menu">
+            <a href="profile.html"><i data-lucide="user"></i> Profile</a>
+            <a href="settings.html"><i data-lucide="settings"></i> Settings</a>
+            <a href="#" class="logout-btn"><i data-lucide="log-out"></i> Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content-placeholder">
+    <div class="container">
+        <h1>🏆 Leaderboard</h1>
+        <p>Top cybersecurity learners in our community</p>
+        <div style="margin-top: 2rem; padding: 2rem; background: rgba(26, 26, 26, 0.5); border-radius: 15px; border: 1px solid var(--border-color);">
+          <p style="color: var(--text-muted); font-size: 1.1rem;">Leaderboard functionality coming soon...</p>
+          <p style="color: var(--text-dim); font-size: 0.9rem; margin-top: 1rem;">Track your progress and compete with other learners!</p>
+        </div>
+    </div>
+  </main>
+
+  <script src="scripts/main.js"></script>
+  <script type="module" src="scripts/leaderboard.js"></script>
+  <script>
+    // Initialize Lucide icons
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+  </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Domains - CyTutor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="styles/cyber-noir.css">
+  <link rel="stylesheet" href="styles/components.css">
+</head>
+<body>
+  <div class="cyber-bg">
+    <div class="cyber-grid"></div>
+    <canvas id="particles"></canvas>
+  </div>
+
+  <header class="cyber-header">
+    <div class="container">
+      <a href="index-new.html" class="cyber-logo">⚡ CyTutor</a>
+      <nav class="cyber-nav">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="challenges.html">Challenges</a>
+        <a href="domains.html" class="active">Domains</a>
+        <a href="leaderboard.html">Leaderboard</a>
+      </nav>
+      <div class="user-menu">
+        <div class="user-toggle">
+          <div class="user-avatar">JD</div>
+          <span class="user-name">John Doe</span>
+          <i data-lucide="chevron-down"></i>
+        </div>
+        <div class="user-dropdown">
+          <a href="profile.html"><i data-lucide="user"></i> Profile</a>
+          <a href="settings.html"><i data-lucide="settings"></i> Settings</a>
+          <a href="#" class="logout"><i data-lucide="log-out"></i> Logout</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="text-center mb-xl">
+        <h1 class="text-gradient" style="font-size: 3rem; margin-bottom: 1rem;">Security Domains</h1>
+        <p style="font-size: 1.125rem; color: var(--text-secondary); max-width: 700px; margin: 0 auto;">
+          Master cybersecurity through comprehensive learning paths across multiple domains
+        </p>
+      </div>
+
+      <div class="cyber-grid-3">
+        <a href="domain-web-security.html" class="cyber-card" style="text-decoration: none; color: inherit;">
+          <div style="width: 80px; height: 80px; background: rgba(34, 197, 94, 0.2); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+            <i data-lucide="globe" style="width: 48px; height: 48px; color: var(--neon-green);"></i>
+          </div>
+          <h3 style="color: var(--neon-green); margin-bottom: 0.75rem;">Web Security</h3>
+          <p style="color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.6;">
+            SQL injection, XSS, CSRF, authentication bypass, and secure coding practices
+          </p>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span class="cyber-badge badge-easy">24 Challenges</span>
+            <i data-lucide="arrow-right" style="width: 20px; height: 20px; color: var(--neon-green);"></i>
+          </div>
+        </a>
+
+        <a href="domain-cryptography.html" class="cyber-card" style="text-decoration: none; color: inherit;">
+          <div style="width: 80px; height: 80px; background: rgba(110, 64, 201, 0.2); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+            <i data-lucide="lock" style="width: 48px; height: 48px; color: var(--cyber-purple);"></i>
+          </div>
+          <h3 style="color: var(--cyber-purple); margin-bottom: 0.75rem;">Cryptography</h3>
+          <p style="color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.6;">
+            Encryption algorithms, hashing, digital signatures, and cryptanalysis techniques
+          </p>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span class="cyber-badge badge-medium">18 Challenges</span>
+            <i data-lucide="arrow-right" style="width: 20px; height: 20px; color: var(--cyber-purple);"></i>
+          </div>
+        </a>
+
+        <a href="#" class="cyber-card" style="text-decoration: none; color: inherit; opacity: 0.7;">
+          <div style="width: 80px; height: 80px; background: rgba(245, 158, 11, 0.2); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+            <i data-lucide="search" style="width: 48px; height: 48px; color: var(--warning);"></i>
+          </div>
+          <h3 style="color: var(--warning); margin-bottom: 0.75rem;">Digital Forensics</h3>
+          <p style="color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.6;">
+            Evidence collection, disk analysis, memory forensics, and investigation techniques
+          </p>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span class="cyber-badge badge-medium">20 Challenges</span>
+            <span style="color: var(--text-muted); font-size: 0.875rem;">Coming Soon</span>
+          </div>
+        </a>
+
+        <a href="#" class="cyber-card" style="text-decoration: none; color: inherit; opacity: 0.7;">
+          <div style="width: 80px; height: 80px; background: rgba(59, 130, 246, 0.2); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+            <i data-lucide="cpu" style="width: 48px; height: 48px; color: var(--info);"></i>
+          </div>
+          <h3 style="color: var(--info); margin-bottom: 0.75rem;">Reverse Engineering</h3>
+          <p style="color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.6;">
+            Binary analysis, decompilation, debugging, and malware reverse engineering
+          </p>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span class="cyber-badge badge-hard">16 Challenges</span>
+            <span style="color: var(--text-muted); font-size: 0.875rem;">Coming Soon</span>
+          </div>
+        </a>
+
+        <a href="#" class="cyber-card" style="text-decoration: none; color: inherit; opacity: 0.7;">
+          <div style="width: 80px; height: 80px; background: rgba(248, 81, 73, 0.2); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+            <i data-lucide="bug" style="width: 48px; height: 48px; color: var(--error);"></i>
+          </div>
+          <h3 style="color: var(--error); margin-bottom: 0.75rem;">Malware Analysis</h3>
+          <p style="color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.6;">
+            Threat detection, behavioral analysis, and advanced malware investigation
+          </p>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span class="cyber-badge badge-hard">15 Challenges</span>
+            <span style="color: var(--text-muted); font-size: 0.875rem;">Coming Soon</span>
+          </div>
+        </a>
+
+        <a href="#" class="cyber-card" style="text-decoration: none; color: inherit; opacity: 0.7;">
+          <div style="width: 80px; height: 80px; background: rgba(46, 160, 67, 0.2); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem;">
+            <i data-lucide="shield" style="width: 48px; height: 48px; color: var(--success);"></i>
+          </div>
+          <h3 style="color: var(--success); margin-bottom: 0.75rem;">Network Security</h3>
+          <p style="color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.6;">
+            Packet analysis, network protocols, intrusion detection, and defense strategies
+          </p>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span class="cyber-badge badge-medium">22 Challenges</span>
+            <span style="color: var(--text-muted); font-size: 0.875rem;">Coming Soon</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <script src="scripts/cyber-particles.js"></script>
+  <script type="module" src="scripts/domains.js"></script>
+  <script>
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+  </script>
+</body>
+</html>

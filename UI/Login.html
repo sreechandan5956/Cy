@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - CyTutor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #0f0f0f;
+            color: #e5e5e5;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header styles matching CyTutor.html */
+        header {
+            background: #121212;
+            border-bottom: 1px solid #222;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            color: #22c55e;
+            margin: 0;
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+
+        nav a {
+            color: #aaa;
+            margin-left: 30px;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color .2s;
+        }
+
+        nav a:hover {
+            color: #22c55e;
+        }
+
+        .toggle-btn {
+            margin-left: 20px;
+            padding: 8px 14px;
+            font-size: 0.9rem;
+            border: 1px solid #22c55e;
+            border-radius: 4px;
+            background: transparent;
+            color: #22c55e;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .toggle-btn:hover {
+            background: #22c55e;
+            color: #fff;
+        }
+
+        /* Login Form Styles */
+        .form-container {
+            background: #1a1a1a;
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid #222;
+            max-width: 400px;
+            margin: 60px auto;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+        }
+
+        .title {
+            color: #22c55e;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0 0 30px;
+            text-align: center;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #bbb;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            background: #121212;
+            border: 1px solid #333;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #22c55e;
+        }
+
+        .forgot {
+            text-align: right;
+            margin-top: 8px;
+        }
+
+        .forgot a {
+            color: #22c55e;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .sign {
+            width: 100%;
+            padding: 14px;
+            background: #22c55e;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .sign:hover {
+            background: #16a34a;
+        }
+
+        .social-message {
+            display: flex;
+            align-items: center;
+            padding: 30px 0;
+            color: #777;
+        }
+
+        .line {
+            flex: 1;
+            height: 1px;
+            background: #333;
+        }
+
+        .message {
+            padding: 0 20px;
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .signup {
+            text-align: center;
+            color: #777;
+            margin: 0;
+        }
+
+        .signup a {
+            color: #22c55e;
+            text-decoration: none;
+            margin-left: 5px;
+        }
+
+        /* Dark Mode Styles */
+        .dark-mode {
+            background: #fff;
+            color: #111;
+        }
+
+        .dark-mode header {
+            background: #f9f9f9;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .dark-mode .form-container {
+            background: #f5f5f5;
+            border-color: #ddd;
+        }
+
+        .dark-mode .input-group input {
+            background: #fff;
+            border-color: #ddd;
+            color: #111;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>CyTutor</h1>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="signup.html">Sign Up</a>
+                <button class="toggle-btn" id="darkModeToggle">☾ Mode</button>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="form-container">
+            <p class="title">Login</p>
+            <form class="form" id="loginForm">
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" placeholder="" required>
+                    <div class="forgot">
+                        <a rel="noopener noreferrer" href="#">Forgot Password ?</a>
+                    </div>
+                </div>
+                <button type="submit" class="sign">Sign in</button>
+            </form>
+            <div class="line"></div>
+            <p class="signup">Don't have an account?
+                <a rel="noopener noreferrer" href="signup.html" class="">Sign up</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script>
+        // Dark mode toggle
+        const toggleBtn = document.getElementById("darkModeToggle");
+        toggleBtn.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+        });
+
+        // Login form handler
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const submitBtn = e.target.querySelector('.sign');
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Signing in...';
+            
+            try {
+                const result = await login(email, password);
+                showMessage('Login successful!', 'success');
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 1000);
+            } catch (error) {
+                showMessage(error.message, 'error');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Sign in';
+            }
+        });
+    </script>
+</body>
+</html>

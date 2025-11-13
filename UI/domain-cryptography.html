@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cryptography - CyTutor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="styles/cyber-noir.css">
+  <link rel="stylesheet" href="styles/components.css">
+</head>
+<body>
+  <div class="cyber-bg">
+    <div class="cyber-grid"></div>
+    <canvas id="particles"></canvas>
+  </div>
+
+  <header class="cyber-header">
+    <div class="container">
+      <a href="index-new.html" class="cyber-logo">⚡ CyTutor</a>
+      <nav class="cyber-nav">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="challenges.html">Challenges</a>
+        <a href="domains.html" class="active">Domains</a>
+        <a href="leaderboard.html">Leaderboard</a>
+      </nav>
+      <div class="user-menu">
+        <div class="user-toggle">
+          <div class="user-avatar">JD</div>
+          <span class="user-name">John Doe</span>
+          <i data-lucide="chevron-down"></i>
+        </div>
+        <div class="user-dropdown">
+          <a href="profile.html"><i data-lucide="user"></i> Profile</a>
+          <a href="settings.html"><i data-lucide="settings"></i> Settings</a>
+          <a href="#" class="logout" onclick="handleLogout()"><i data-lucide="log-out"></i> Logout</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: center; margin-bottom: 3rem;">
+        <div style="width: 120px; height: 120px; background: rgba(110, 64, 201, 0.2); border-radius: 20px; display: flex; align-items: center; justify-content: center;">
+          <i data-lucide="lock" style="width: 64px; height: 64px; color: var(--cyber-purple);"></i>
+        </div>
+        <div>
+          <h1 class="text-gradient" style="font-size: 3rem; margin-bottom: 0.5rem;">Cryptography</h1>
+          <p style="font-size: 1.25rem; color: var(--text-secondary); margin-bottom: 1rem;">
+            Master encryption, hashing, and secure communication protocols
+          </p>
+          <div style="display: flex; gap: 1rem; align-items: center;">
+            <span class="cyber-badge badge-medium">18 Challenges</span>
+            <span style="color: var(--text-muted);">•</span>
+            <span style="color: var(--text-secondary);">Intermediate to Advanced</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-panel mb-xl">
+        <h2 style="color: var(--cyber-purple); margin-bottom: 1.5rem;">Learning Path</h2>
+        <div style="display: grid; gap: 1.5rem;">
+          <div style="display: flex; gap: 1.5rem; align-items: start;">
+            <div class="status-icon status-success">
+              <i data-lucide="check"></i>
+            </div>
+            <div style="flex: 1;">
+              <h3 style="margin-bottom: 0.5rem;">1. Classical Ciphers</h3>
+              <p style="color: var(--text-secondary); margin-bottom: 0.75rem;">
+                Learn Caesar, Vigenère, and substitution ciphers
+              </p>
+              <span class="cyber-badge badge-easy">Completed</span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1.5rem; align-items: start;">
+            <div class="status-icon status-progress">
+              <i data-lucide="play"></i>
+            </div>
+            <div style="flex: 1;">
+              <h3 style="margin-bottom: 0.5rem;">2. Modern Encryption</h3>
+              <p style="color: var(--text-secondary); margin-bottom: 0.75rem;">
+                Master AES, RSA, and asymmetric cryptography
+              </p>
+              <span class="cyber-badge badge-medium">In Progress</span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1.5rem; align-items: start; opacity: 0.6;">
+            <div class="status-icon" style="background: rgba(255, 255, 255, 0.1); color: var(--text-muted);">
+              <i data-lucide="lock"></i>
+            </div>
+            <div style="flex: 1;">
+              <h3 style="margin-bottom: 0.5rem;">3. Hash Functions & Attacks</h3>
+              <p style="color: var(--text-secondary); margin-bottom: 0.75rem;">
+                Understand MD5, SHA, and collision attacks
+              </p>
+              <span class="cyber-badge" style="background: rgba(255, 255, 255, 0.1); color: var(--text-muted); border-color: rgba(255, 255, 255, 0.1);">Locked</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2 style="color: var(--cyber-purple); margin-bottom: 2rem;">Available Challenges</h2>
+      <div class="cyber-grid-3">
+        <div class="cyber-card">
+          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
+            <h3>Caesar Cipher Decoder</h3>
+            <span class="cyber-badge badge-easy">Easy</span>
+          </div>
+          <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+            Decrypt messages using Caesar cipher
+          </p>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="color: var(--text-muted); font-size: 0.875rem;">
+              <i data-lucide="award" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle;"></i>
+              100 XP
+            </div>
+            <a href="#" class="cyber-btn cyber-btn-primary" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Start</a>
+          </div>
+        </div>
+
+        <div class="cyber-card">
+          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
+            <h3>RSA Key Cracking</h3>
+            <span class="cyber-badge badge-hard">Hard</span>
+          </div>
+          <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+            Factor weak RSA keys to decrypt messages
+          </p>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="color: var(--text-muted); font-size: 0.875rem;">
+              <i data-lucide="award" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle;"></i>
+              500 XP
+            </div>
+            <a href="#" class="cyber-btn cyber-btn-primary" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Start</a>
+          </div>
+        </div>
+
+        <div class="cyber-card">
+          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
+            <h3>Hash Collision Attack</h3>
+            <span class="cyber-badge badge-hard">Hard</span>
+          </div>
+          <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+            Find hash collisions in weak algorithms
+          </p>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="color: var(--text-muted); font-size: 0.875rem;">
+              <i data-lucide="award" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle;"></i>
+              600 XP
+            </div>
+            <a href="#" class="cyber-btn cyber-btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.875rem;">
+              <i data-lucide="lock" style="width: 14px; height: 14px;"></i>
+              Locked
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="scripts/cyber-particles.js"></script>
+  <script>
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+
+    const userToggle = document.querySelector('.user-toggle');
+    const userDropdown = document.querySelector('.user-dropdown');
+
+    if (userToggle && userDropdown) {
+      userToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        userDropdown.classList.toggle('show');
+        userToggle.classList.toggle('active');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!userToggle.contains(e.target) && !userDropdown.contains(e.target)) {
+          userDropdown.classList.remove('show');
+          userToggle.classList.remove('active');
+        }
+      });
+    }
+
+    function handleLogout() {
+      if (confirm('Are you sure you want to logout?')) {
+        window.location.href = 'login.html';
+      }
+    }
+  </script>
+</body>
+</html>

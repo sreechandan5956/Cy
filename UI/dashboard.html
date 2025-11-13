@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - CyTutor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/cyber-noir.css">
+  <style>
+    /* Dashboard Specific Styles */
+    .dashboard {
+      padding-top: 80px;
+    }
+
+    .welcome-section {
+      padding: 3rem 0;
+      text-align: center;
+    }
+
+    .welcome-section h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--neon-green);
+    }
+
+    /* Domain Grid */
+    .domains-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .domain-card {
+      position: relative;
+    }
+
+    .domain-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .domain-card h3 {
+      color: var(--neon-green);
+      margin-bottom: 0.5rem;
+    }
+
+    .domain-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    /* Recent Activity */
+    .activity-section {
+      background: var(--bg-elevated);
+      padding: 3rem 0;
+      margin-top: 4rem;
+    }
+
+    .activity-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .activity-header h2 {
+      color: var(--neon-green);
+    }
+
+    .activity-list {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .activity-item {
+      background: var(--bg-glass);
+      border: 1px solid var(--border-subtle);
+      padding: 1rem;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: var(--transition-base);
+    }
+
+    .activity-item:hover {
+      border-color: var(--border-glow);
+    }
+
+    .activity-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .activity-status {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.875rem;
+    }
+
+    .status-solved {
+      background: rgba(34, 197, 94, 0.2);
+      color: var(--neon-green);
+    }
+
+    .status-failed {
+      background: rgba(248, 81, 73, 0.2);
+      color: var(--error);
+    }
+
+    .status-progress {
+      background: rgba(245, 158, 11, 0.2);
+      color: var(--warning);
+    }
+
+    /* Progress Bar */
+    .progress-section {
+      padding: 3rem 0;
+    }
+
+    .progress-bar {
+      background: rgba(34, 197, 94, 0.1);
+      height: 10px;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      margin-top: 1rem;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--neon-green) 0%, var(--cyber-purple) 100%);
+      width: 65%;
+      transition: width 1s ease-in-out;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+    }
+
+    .progress-info {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.5rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 1024px) {
+      .domains-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .domains-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .welcome-section h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="particles-bg" class="cyber-bg"></canvas>
+  <div class="cyber-grid"></div>
+
+  <header class="cyber-header">
+    <div class="container">
+      <a href="dashboard.html" class="cyber-logo">CyTutor</a>
+      <nav class="cyber-nav">
+        <a href="dashboard.html" class="active">Home</a>
+        <a href="challenges.html">Challenges</a>
+        <a href="domains.html">Learn</a>
+        <a href="materials.html">Materials</a>
+        <a href="#" class="cyber-btn cyber-btn-primary" onclick="handleLogout(); return false;">Logout</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="dashboard">
+    <section class="welcome-section">
+      <div class="container">
+        <h1>Welcome back, CyberNinja 👾</h1>
+        <p>Continue your journey in cybersecurity</p>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="domains-grid">
+        <a href="domains.html" class="domain-card cyber-card" style="text-decoration: none; color: inherit;">
+          <div class="domain-icon">🔐</div>
+          <h3>Cryptography</h3>
+          <p>Master encryption, hashing, and secure communication protocols.</p>
+        </a>
+        <a href="domains.html" class="domain-card cyber-card" style="text-decoration: none; color: inherit;">
+          <div class="domain-icon">🔍</div>
+          <h3>Forensics</h3>
+          <p>Learn digital investigation and evidence analysis techniques.</p>
+        </a>
+        <a href="domains.html" class="domain-card cyber-card" style="text-decoration: none; color: inherit;">
+          <div class="domain-icon">🦠</div>
+          <h3>Malware</h3>
+          <p>Study malware analysis and reverse engineering.</p>
+        </a>
+        <a href="domains.html" class="domain-card cyber-card" style="text-decoration: none; color: inherit;">
+          <div class="domain-icon">⚡</div>
+          <h3>Reverse Engineering</h3>
+          <p>Decode and understand compiled programs and binaries.</p>
+        </a>
+        <a href="domains.html" class="domain-card cyber-card" style="text-decoration: none; color: inherit;">
+          <div class="domain-icon">🌐</div>
+          <h3>Web Security</h3>
+          <p>Explore web vulnerabilities and secure coding practices.</p>
+        </a>
+        <a href="domains.html" class="domain-card cyber-card" style="text-decoration: none; color: inherit;">
+          <div class="domain-icon">🛡️</div>
+          <h3>VAPT</h3>
+          <p>Learn vulnerability assessment and penetration testing.</p>
+        </a>
+      </div>
+
+      <div class="progress-section">
+        <h2>Your Progress</h2>
+        <div class="progress-bar">
+          <div class="progress-fill"></div>
+        </div>
+        <div class="progress-info">
+          <span>Level 5</span>
+          <span>3,250 XP / 5,000 XP</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="activity-section">
+      <div class="container">
+        <div class="activity-header">
+          <h2>Recent Activity</h2>
+          <a href="challenges.html" class="cyber-btn cyber-btn-secondary">View All</a>
+        </div>
+        <div class="activity-list">
+          <div class="activity-item">
+            <div class="activity-info">
+              <div class="activity-status status-solved">✓</div>
+              <span>SQL Injection Basics</span>
+            </div>
+            <span>+100 XP</span>
+          </div>
+          <div class="activity-item">
+            <div class="activity-info">
+              <div class="activity-status status-failed">✕</div>
+              <span>Advanced Buffer Overflow</span>
+            </div>
+            <span>Try Again</span>
+          </div>
+          <div class="activity-item">
+            <div class="activity-info">
+              <div class="activity-status status-progress">⋯</div>
+              <span>Network Protocol Analysis</span>
+            </div>
+            <span>In Progress</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/auth.js"></script>
+  <script>
+    // Check authentication
+    if (!isAuthenticated()) {
+      window.location.href = 'Login.html';
+    }
+
+    // Load user info
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    if (user.name) {
+      document.querySelector('.welcome-section h1').textContent = `Welcome back, ${user.name} 👾`;
+    }
+
+    // Same particle animation as landing page
+    const canvas = document.getElementById('particles-bg');
+    const ctx = canvas.getContext('2d');
+    const particles = [];
+    const particleCount = 100;
+
+    function setCanvasSize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    setCanvasSize();
+    window.addEventListener('resize', setCanvasSize);
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = Math.random() * 0.5 - 0.25;
+        this.vy = Math.random() * 0.5 - 0.25;
+        this.size = Math.random() * 2;
+        this.color = Math.random() < 0.33 ? '#9b5cff' : 
+                     Math.random() < 0.5 ? '#00f0ff' : '#3aff92';
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        if (this.x < 0) this.x = canvas.width;
+        if (this.x > canvas.width) this.x = 0;
+        if (this.y < 0) this.y = canvas.height;
+        if (this.y > canvas.height) this.y = 0;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      particles.forEach(particle => {
+        particle.update();
+        particle.draw();
+      });
+
+      particles.forEach((p1, i) => {
+        particles.slice(i + 1).forEach(p2 => {
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 150) {
+            ctx.beginPath();
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p2.x, p2.y);
+            ctx.strokeStyle = `rgba(155, 92, 255, ${0.1 * (1 - distance/150)})`;
+            ctx.stroke();
+          }
+        });
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    // Logout functionality (no auth check)
+    function handleLogout() {
+      if (confirm('Are you sure you want to logout?')) {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        localStorage.removeItem('pendingEmail');
+        window.location.href = 'Login.html';
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Challenges - CyTutor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="styles/cyber-noir.css">
+  <link rel="stylesheet" href="styles/components.css">
+  <style>
+    .challenge-card {
+      position: relative;
+      height: 320px;
+      perspective: 1000px;
+    }
+    .challenge-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+    .challenge-card:hover .challenge-inner {
+      transform: rotateY(180deg);
+    }
+    .challenge-front, .challenge-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .challenge-front {
+      background: var(--bg-glass);
+      border: 1px solid var(--border-subtle);
+      backdrop-filter: blur(20px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+    }
+    .challenge-back {
+      background: linear-gradient(135deg, var(--neon-green) 0%, var(--cyber-purple) 100%);
+      transform: rotateY(180deg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      color: white;
+    }
+    .challenge-icon {
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="cyber-bg">
+    <div class="cyber-grid"></div>
+    <canvas id="particles"></canvas>
+  </div>
+
+  <header class="cyber-header">
+    <div class="container">
+      <a href="index-new.html" class="cyber-logo">⚡ CyTutor</a>
+      <nav class="cyber-nav">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="challenges.html" class="active">Challenges</a>
+        <a href="domains.html">Domains</a>
+        <a href="leaderboard.html">Leaderboard</a>
+      </nav>
+      <div class="user-menu">
+        <div class="user-toggle">
+          <div class="user-avatar">JD</div>
+          <span class="user-name">John Doe</span>
+          <i data-lucide="chevron-down"></i>
+        </div>
+        <div class="user-dropdown">
+          <a href="profile.html"><i data-lucide="user"></i> Profile</a>
+          <a href="settings.html"><i data-lucide="settings"></i> Settings</a>
+          <a href="#" class="logout"><i data-lucide="log-out"></i> Logout</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="text-center mb-xl">
+        <h1 class="text-gradient" style="font-size: 3rem; margin-bottom: 1rem;">Security Challenges</h1>
+        <p style="font-size: 1.125rem; color: var(--text-secondary); max-width: 700px; margin: 0 auto;">
+          Test your skills with hands-on cybersecurity challenges across multiple domains
+        </p>
+      </div>
+
+      <div style="display: flex; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; justify-content: center;">
+        <button class="cyber-btn cyber-btn-primary" onclick="filterChallenges('all', this)">All</button>
+        <button class="cyber-btn cyber-btn-secondary" onclick="filterChallenges('easy', this)">Easy</button>
+        <button class="cyber-btn cyber-btn-secondary" onclick="filterChallenges('medium', this)">Medium</button>
+        <button class="cyber-btn cyber-btn-secondary" onclick="filterChallenges('hard', this)">Hard</button>
+      </div>
+
+      <div class="cyber-grid-3" id="challenges-grid">
+        <div class="challenge-card" data-difficulty="easy">
+          <div class="challenge-inner">
+            <div class="challenge-front">
+              <div class="challenge-icon">
+                <i data-lucide="unlock" style="width: 64px; height: 64px; color: var(--neon-green);"></i>
+              </div>
+              <h3 style="margin-bottom: 1rem;">SQL Injection Basics</h3>
+              <p style="color: var(--text-secondary); margin-bottom: 1rem;">Learn to exploit SQL injection vulnerabilities</p>
+              <span class="cyber-badge badge-easy">Easy</span>
+            </div>
+            <div class="challenge-back">
+              <h3 style="margin-bottom: 1rem;">SQL Injection Basics</h3>
+              <p style="margin-bottom: 2rem; opacity: 0.9;">Points: 100 | Time: 30 min</p>
+              <a href="#" class="cyber-btn" style="background: white; color: var(--neon-green); border: none;">Start Challenge</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="challenge-card" data-difficulty="medium">
+          <div class="challenge-inner">
+            <div class="challenge-front">
+              <div class="challenge-icon">
+                <i data-lucide="code" style="width: 64px; height: 64px; color: var(--cyber-purple);"></i>
+              </div>
+              <h3 style="margin-bottom: 1rem;">XSS Attack Vector</h3>
+              <p style="color: var(--text-secondary); margin-bottom: 1rem;">Exploit cross-site scripting vulnerabilities</p>
+              <span class="cyber-badge badge-medium">Medium</span>
+            </div>
+            <div class="challenge-back">
+              <h3 style="margin-bottom: 1rem;">XSS Attack Vector</h3>
+              <p style="margin-bottom: 2rem; opacity: 0.9;">Points: 200 | Time: 45 min</p>
+              <a href="#" class="cyber-btn" style="background: white; color: var(--cyber-purple); border: none;">Start Challenge</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="challenge-card" data-difficulty="hard">
+          <div class="challenge-inner">
+            <div class="challenge-front">
+              <div class="challenge-icon">
+                <i data-lucide="shield-alert" style="width: 64px; height: 64px; color: var(--error);"></i>
+              </div>
+              <h3 style="margin-bottom: 1rem;">Buffer Overflow</h3>
+              <p style="color: var(--text-secondary); margin-bottom: 1rem;">Master memory corruption techniques</p>
+              <span class="cyber-badge badge-hard">Hard</span>
+            </div>
+            <div class="challenge-back">
+              <h3 style="margin-bottom: 1rem;">Buffer Overflow</h3>
+              <p style="margin-bottom: 2rem; opacity: 0.9;">Points: 500 | Time: 90 min</p>
+              <a href="#" class="cyber-btn" style="background: white; color: var(--error); border: none;">Start Challenge</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="challenge-card" data-difficulty="easy">
+          <div class="challenge-inner">
+            <div class="challenge-front">
+              <div class="challenge-icon">
+                <i data-lucide="key" style="width: 64px; height: 64px; color: var(--neon-green);"></i>
+              </div>
+              <h3 style="margin-bottom: 1rem;">Password Cracking</h3>
+              <p style="color: var(--text-secondary); margin-bottom: 1rem;">Crack weak password hashes</p>
+              <span class="cyber-badge badge-easy">Easy</span>
+            </div>
+            <div class="challenge-back">
+              <h3 style="margin-bottom: 1rem;">Password Cracking</h3>
+              <p style="margin-bottom: 2rem; opacity: 0.9;">Points: 150 | Time: 30 min</p>
+              <a href="#" class="cyber-btn" style="background: white; color: var(--neon-green); border: none;">Start Challenge</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="challenge-card" data-difficulty="medium">
+          <div class="challenge-inner">
+            <div class="challenge-front">
+              <div class="challenge-icon">
+                <i data-lucide="radio" style="width: 64px; height: 64px; color: var(--cyber-purple);"></i>
+              </div>
+              <h3 style="margin-bottom: 1rem;">Network Sniffing</h3>
+              <p style="color: var(--text-secondary); margin-bottom: 1rem;">Analyze network traffic for secrets</p>
+              <span class="cyber-badge badge-medium">Medium</span>
+            </div>
+            <div class="challenge-back">
+              <h3 style="margin-bottom: 1rem;">Network Sniffing</h3>
+              <p style="margin-bottom: 2rem; opacity: 0.9;">Points: 250 | Time: 60 min</p>
+              <a href="#" class="cyber-btn" style="background: white; color: var(--cyber-purple); border: none;">Start Challenge</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="challenge-card" data-difficulty="hard">
+          <div class="challenge-inner">
+            <div class="challenge-front">
+              <div class="challenge-icon">
+                <i data-lucide="bug" style="width: 64px; height: 64px; color: var(--error);"></i>
+              </div>
+              <h3 style="margin-bottom: 1rem;">Malware Reverse Engineering</h3>
+              <p style="color: var(--text-secondary); margin-bottom: 1rem;">Analyze and reverse malicious code</p>
+              <span class="cyber-badge badge-hard">Hard</span>
+            </div>
+            <div class="challenge-back">
+              <h3 style="margin-bottom: 1rem;">Malware Reverse Engineering</h3>
+              <p style="margin-bottom: 2rem; opacity: 0.9;">Points: 600 | Time: 120 min</p>
+              <a href="#" class="cyber-btn" style="background: white; color: var(--error); border: none;">Start Challenge</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="scripts/cyber-particles.js"></script>
+  <script type="module" src="scripts/challenges.js"></script>
+  <script>
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+  </script>
+</body>
+</html>

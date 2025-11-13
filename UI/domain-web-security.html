@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Security - CyTutor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="styles/cyber-noir.css">
+  <link rel="stylesheet" href="styles/components.css">
+</head>
+<body>
+  <div class="cyber-bg">
+    <div class="cyber-grid"></div>
+    <canvas id="particles"></canvas>
+  </div>
+
+  <header class="cyber-header">
+    <div class="container">
+      <a href="index-new.html" class="cyber-logo">⚡ CyTutor</a>
+      <nav class="cyber-nav">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="challenges.html">Challenges</a>
+        <a href="domains.html" class="active">Domains</a>
+        <a href="leaderboard.html">Leaderboard</a>
+      </nav>
+      <div class="user-menu">
+        <div class="user-toggle">
+          <div class="user-avatar">JD</div>
+          <span class="user-name">John Doe</span>
+          <i data-lucide="chevron-down"></i>
+        </div>
+        <div class="user-dropdown">
+          <a href="profile.html"><i data-lucide="user"></i> Profile</a>
+          <a href="settings.html"><i data-lucide="settings"></i> Settings</a>
+          <a href="#" class="logout" onclick="handleLogout()"><i data-lucide="log-out"></i> Logout</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <!-- Domain Header -->
+      <div style="display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: center; margin-bottom: 3rem;">
+        <div style="width: 120px; height: 120px; background: rgba(34, 197, 94, 0.2); border-radius: 20px; display: flex; align-items: center; justify-content: center;">
+          <i data-lucide="globe" style="width: 64px; height: 64px; color: var(--neon-green);"></i>
+        </div>
+        <div>
+          <h1 class="text-gradient" style="font-size: 3rem; margin-bottom: 0.5rem;">Web Security</h1>
+          <p style="font-size: 1.25rem; color: var(--text-secondary); margin-bottom: 1rem;">
+            Master web application security through hands-on exploitation and defense
+          </p>
+          <div style="display: flex; gap: 1rem; align-items: center;">
+            <span class="cyber-badge badge-easy">24 Challenges</span>
+            <span style="color: var(--text-muted);">•</span>
+            <span style="color: var(--text-secondary);">Beginner to Advanced</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Learning Path -->
+      <div class="glass-panel mb-xl">
+        <h2 style="color: var(--neon-green); margin-bottom: 1.5rem;">Learning Path</h2>
+        <div style="display: grid; gap: 1.5rem;">
+          <div style="display: flex; gap: 1.5rem; align-items: start;">
+            <div class="status-icon status-success">
+              <i data-lucide="check"></i>
+            </div>
+            <div style="flex: 1;">
+              <h3 style="margin-bottom: 0.5rem;">1. Introduction to Web Security</h3>
+              <p style="color: var(--text-secondary); margin-bottom: 0.75rem;">
+                Learn the fundamentals of web application architecture and common vulnerabilities
+              </p>
+              <div style="display: flex; gap: 0.5rem;">
+                <span class="cyber-badge badge-easy">Completed</span>
+                <span style="color: var(--success);">+100 XP</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1.5rem; align-items: start;">
+            <div class="status-icon status-progress">
+              <i data-lucide="play"></i>
+            </div>
+            <div style="flex: 1;">
+              <h3 style="margin-bottom: 0.5rem;">2. SQL Injection Attacks</h3>
+              <p style="color: var(--text-secondary); margin-bottom: 0.75rem;">
+                Exploit database vulnerabilities through SQL injection techniques
+              </p>
+              <div style="display: flex; gap: 0.5rem; align-items: center;">
+                <span class="cyber-badge badge-medium">In Progress</span>
+                <div class="cyber-progress" style="width: 200px;">
+                  <div class="progress-fill" style="width: 60%;"></div>
+                </div>
+                <span style="color: var(--text-muted); font-size: 0.875rem;">60%</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1.5rem; align-items: start; opacity: 0.6;">
+            <div class="status-icon" style="background: rgba(255, 255, 255, 0.1); color: var(--text-muted);">
+              <i data-lucide="lock"></i>
+            </div>
+            <div style="flex: 1;">
+              <h3 style="margin-bottom: 0.5rem;">3. Cross-Site Scripting (XSS)</h3>
+              <p style="color: var(--text-secondary); margin-bottom: 0.75rem;">
+                Master client-side injection attacks and XSS exploitation
+              </p>
+              <span class="cyber-badge" style="background: rgba(255, 255, 255, 0.1); color: var(--text-muted); border-color: rgba(255, 255, 255, 0.1);">Locked</span>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1.5rem; align-items: start; opacity: 0.6;">
+            <div class="status-icon" style="background: rgba(255, 255, 255, 0.1); color: var(--text-muted);">
+              <i data-lucide="lock"></i>
+            </div>
+            <div style="flex: 1;">
+              <h3 style="margin-bottom: 0.5rem;">4. Authentication Bypass</h3>
+              <p style="color: var(--text-secondary); margin-bottom: 0.75rem;">
+                Learn to exploit weak authentication mechanisms
+              </p>
+              <span class="cyber-badge" style="background: rgba(255, 255, 255, 0.1); color: var(--text-muted); border-color: rgba(255, 255, 255, 0.1);">Locked</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Available Challenges -->
+      <h2 style="color: var(--neon-green); margin-bottom: 2rem;">Available Challenges</h2>
+      <div class="cyber-grid-3">
+        <div class="cyber-card">
+          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
+            <h3>SQL Injection - Login Bypass</h3>
+            <span class="cyber-badge badge-easy">Easy</span>
+          </div>
+          <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+            Bypass authentication using SQL injection
+          </p>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="color: var(--text-muted); font-size: 0.875rem;">
+              <i data-lucide="award" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle;"></i>
+              100 XP
+            </div>
+            <a href="#" class="cyber-btn cyber-btn-primary" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Start</a>
+          </div>
+        </div>
+
+        <div class="cyber-card">
+          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
+            <h3>Blind SQL Injection</h3>
+            <span class="cyber-badge badge-medium">Medium</span>
+          </div>
+          <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+            Extract data without direct output
+          </p>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="color: var(--text-muted); font-size: 0.875rem;">
+              <i data-lucide="award" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle;"></i>
+              250 XP
+            </div>
+            <a href="#" class="cyber-btn cyber-btn-primary" style="padding: 0.5rem 1rem; font-size: 0.875rem;">Start</a>
+          </div>
+        </div>
+
+        <div class="cyber-card">
+          <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem;">
+            <h3>Stored XSS Attack</h3>
+            <span class="cyber-badge badge-medium">Medium</span>
+          </div>
+          <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+            Inject persistent malicious scripts
+          </p>
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="color: var(--text-muted); font-size: 0.875rem;">
+              <i data-lucide="award" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle;"></i>
+              200 XP
+            </div>
+            <a href="#" class="cyber-btn cyber-btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.875rem;">
+              <i data-lucide="lock" style="width: 14px; height: 14px;"></i>
+              Locked
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="scripts/cyber-particles.js"></script>
+  <script>
+    if (typeof lucide !== 'undefined') {
+      lucide.createIcons();
+    }
+
+    const userToggle = document.querySelector('.user-toggle');
+    const userDropdown = document.querySelector('.user-dropdown');
+
+    if (userToggle && userDropdown) {
+      userToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        userDropdown.classList.toggle('show');
+        userToggle.classList.toggle('active');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!userToggle.contains(e.target) && !userDropdown.contains(e.target)) {
+          userDropdown.classList.remove('show');
+          userToggle.classList.remove('active');
+        }
+      });
+    }
+
+    function handleLogout() {
+      if (confirm('Are you sure you want to logout?')) {
+        window.location.href = 'login.html';
+      }
+    }
+  </script>
+</body>
+</html>

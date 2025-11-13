@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>System Health - CyTutor</title>
+  <style>
+    body {
+      font-family: 'Courier New', monospace;
+      background: #0f0f0f;
+      color: #22c55e;
+      padding: 40px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 { color: #22c55e; }
+    .status { 
+      padding: 20px;
+      margin: 10px 0;
+      border: 1px solid #333;
+      border-radius: 8px;
+      background: #1a1a1a;
+    }
+    .ok { border-left: 4px solid #22c55e; }
+    .error { border-left: 4px solid #ef4444; }
+    .loading { border-left: 4px solid #f59e0b; }
+    pre { 
+      background: #0a0a0a;
+      padding: 10px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+    button {
+      background: #22c55e;
+      color: #000;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      margin: 10px 5px 10px 0;
+    }
+    button:hover { background: #16a34a; }
+  </style>
+</head>
+<body>
+  <h1>🔍 CyTutor System Health Check</h1>
+  
+  <button onclick="checkHealth()">Refresh Status</button>
+  <button onclick="window.location.href='index.html'">Go to Home</button>
+  
+  <div id="results"></div>
+
+  <script>
+    const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+      ? 'http://localhost:5000'
+      : window.location.origin;
+
+    async function checkHealth() {
+      const results = document.getElementById('results');
+      results.innerHTML = '<div class="status loading">⏳ Checking system health...</div>';
+
+      const checks = [];
+
+      // Check backend health
+      checks.push(checkBackend());
+      
+      // Check authentication
+      checks.push(checkAuth());
+
+      const allResults = await Promise.all(checks);
+      
+      results.innerHTML = allResults.join('');
+    }
+
+    async function checkBackend() {
+      try {
+        const response = await fetch(`${API_URL}/health`);
+        const data = await response.json();
+        
+        if (data.status === 'OK') {
+          return `
+            <div class="status ok">
+              <h3>✅ Backend Server</h3>
+              <p>Status: <strong>Online</strong></p>
+              <p>URL: ${API_URL}</p>
+              <pre>${JSON.stringify(data, null, 2)}</pre>
+            </div>
+          `;
+        }
+      } catch (error) {
+        return `
+          <div class="status error">
+            <h3>❌ Backend Server</h3>
+            <p>Status: <strong>Offline</strong></p>
+            <p>Error: ${error.message}</p>
+            <p>Make sure the backend server is running on port 5000</p>
+          </div>
+        `;
+      }
+    }
+
+    async function checkAuth() {
+      const token = localStorage.getItem('token');
+      
+      if (!token) {
+        return `
+          <div class="status ok">
+            <h3>🔐 Authentication</h3>
+            <p>Status: <strong>Not logged in</strong></p>
+            <p>This is normal if you haven't logged in yet.</p>
+          </div>
+        `;
+      }
+
+      try {
+        const response = await fetch(`${API_URL}/api/auth/me`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          return `
+            <div class="status ok">
+              <h3>✅ Authentication</h3>
+              <p>Status: <strong>Logged in</strong></p>
+              <pre>${JSON.stringify(data, null, 2)}</pre>
+            </div>
+          `;
+        } else {
+          return `
+            <div class="status error">
+              <h3>⚠️ Authentication</h3>
+              <p>Status: <strong>Token invalid or expired</strong></p>
+              <p>Please log in again.</p>
+            </div>
+          `;
+        }
+      } catch (error) {
+        return `
+          <div class="status error">
+            <h3>❌ Authentication</h3>
+            <p>Error: ${error.message}</p>
+          </div>
+        `;
+      }
+    }
+
+    // Run check on load
+    checkHealth();
+  </script>
+</body>
+</html>

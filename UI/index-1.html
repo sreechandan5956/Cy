@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - CyTutor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <style>
+    :root {
+      --primary: #22c55e;
+      --primary-dark: #16a34a;
+      --bg-dark: #0f0f0f;
+      --bg-light: #1a1a1a;
+      --text: #e5e5e5;
+      --text-dim: #aaa;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    #animated-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.1;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    header {
+      background: rgba(18, 18, 18, 0.8);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(34, 197, 94, 0.1);
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      color: var(--primary);
+      margin: 0;
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+
+    nav a {
+      color: var(--text-dim);
+      margin-left: 30px;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 120px 20px;
+      position: relative;
+    }
+
+    .hero h2 {
+      font-size: 3.5rem;
+      color: var(--text);
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-dim);
+      margin-bottom: 40px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Course Grid */
+    .courses {
+      padding: 80px 0;
+      background: rgba(26, 26, 26, 0.8);
+      backdrop-filter: blur(8px);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-header h2 {
+      color: var(--primary);
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+
+    .section-header p {
+      color: var(--text-dim);
+      font-size: 1.1rem;
+    }
+
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+
+    .course-card {
+      background: rgba(30, 30, 30, 0.9);
+      backdrop-filter: blur(8px);
+      border-radius: 12px;
+      border: 1px solid rgba(34, 197, 94, 0.1);
+      padding: 30px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .course-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(34, 197, 94, 0.1);
+    }
+
+    .course-card h3 {
+      color: var(--text);
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+
+    .course-card p {
+      color: var(--text-dim);
+      margin-bottom: 20px;
+    }
+
+    .course-card .level {
+      display: inline-block;
+      padding: 5px 12px;
+      background: rgba(34, 197, 94, 0.1);
+      color: var(--primary);
+      border-radius: 20px;
+      font-size: 0.9rem;
+    }
+
+    /* Stats Section */
+    .stats {
+      padding: 100px 0;
+      text-align: center;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+    }
+
+    .stat-item h3 {
+      color: var(--primary);
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+
+    .stat-item p {
+      color: var(--text-dim);
+      font-size: 1.1rem;
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(18, 18, 18, 0.8);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid rgba(34, 197, 94, 0.1);
+      padding: 60px 0 30px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-section h3 {
+      color: var(--primary);
+      margin-bottom: 20px;
+      font-size: 1.2rem;
+    }
+
+    .footer-section p,
+    .footer-section a {
+      color: var(--text-dim);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 10px;
+      transition: color 0.2s;
+    }
+
+    .footer-section a:hover {
+      color: var(--primary);
+    }
+
+    .copyright {
+      text-align: center;
+      color: var(--text-dim);
+      padding-top: 30px;
+      border-top: 1px solid rgba(34, 197, 94, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <canvas id="animated-bg"></canvas>
+
+  <header>
+    <div class="container">
+      <h1>CyTutor</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="Login.html">Login</a>
+        <a href="signup.html">Sign Up</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h2>Master Cybersecurity<br>One Challenge at a Time</h2>
+      <p>Join thousands of cybersecurity enthusiasts in their journey to become ethical hackers and security professionals through hands-on learning and real-world challenges.</p>
+    </div>
+  </section>
+
+  <section class="courses">
+    <div class="container">
+      <div class="section-header">
+        <h2>Featured Courses</h2>
+        <p>Start your journey with our most popular learning paths</p>
+      </div>
+      <div class="course-grid">
+        <div class="course-card">
+          <h3>Web Security Fundamentals</h3>
+          <p>Learn about common web vulnerabilities, exploitation techniques, and defensive strategies.</p>
+          <span class="level">Beginner</span>
+        </div>
+        <div class="course-card">
+          <h3>Network Penetration Testing</h3>
+          <p>Master the art of network security assessment and vulnerability discovery.</p>
+          <span class="level">Intermediate</span>
+        </div>
+        <div class="course-card">
+          <h3>Malware Analysis</h3>
+          <p>Dive deep into reverse engineering and malware behavior analysis.</p>
+          <span class="level">Advanced</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <h3>10K+</h3>
+          <p>Active Learners</p>
+        </div>
+        <div class="stat-item">
+          <h3>500+</h3>
+          <p>Challenges</p>
+        </div>
+        <div class="stat-item">
+          <h3>50+</h3>
+          <p>Learning Paths</p>
+        </div>
+        <div class="stat-item">
+          <h3>95%</h3>
+          <p>Success Rate</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Company</h3>
+          <a href="#">About Us</a>
+          <a href="#">Careers</a>
+          <a href="#">Contact</a>
+        </div>
+        <div class="footer-section">
+          <h3>Resources</h3>
+          <a href="#">Blog</a>
+          <a href="#">Documentation</a>
+          <a href="#">Community</a>
+        </div>
+        <div class="footer-section">
+          <h3>Legal</h3>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookie Policy</a>
+        </div>
+        <div class="footer-section">
+          <h3>Connect</h3>
+          <a href="#">Twitter</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">Discord</a>
+        </div>
+      </div>
+      <div class="copyright">
+        © 2025 CyTutor. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Anime.js Dynamic Background (same as signup page)
+    const canvas = document.getElementById('animated-bg');
+    const ctx = canvas.getContext('2d');
+    const particlesArray = [];
+    const particleCount = 100;
+
+    function setCanvasSize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    setCanvasSize();
+    window.addEventListener('resize', setCanvasSize);
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2;
+        this.speedX = Math.random() * 1 - 0.5;
+        this.speedY = Math.random() * 1 - 0.5;
+        this.color = '#22c55e';
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x > canvas.width) this.x = 0;
+        if (this.x < 0) this.x = canvas.width;
+        if (this.y > canvas.height) this.y = 0;
+        if (this.y < 0) this.y = canvas.height;
+      }
+
+      draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function init() {
+      for (let i = 0; i < particleCount; i++) {
+        particlesArray.push(new Particle());
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      for (let i = 0; i < particlesArray.length; i++) {
+        particlesArray[i].update();
+        particlesArray[i].draw();
+        
+        for (let j = i; j < particlesArray.length; j++) {
+          const dx = particlesArray[i].x - particlesArray[j].x;
+          const dy = particlesArray[i].y - particlesArray[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance < 100) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(34, 197, 94, ${0.1 * (1 - distance/100)})`;
+            ctx.lineWidth = 1;
+            ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+            ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(animate);
+    }
+
+    init();
+    animate();
+  </script>
+</body>
+</html>

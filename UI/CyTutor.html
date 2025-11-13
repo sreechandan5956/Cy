@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CyTutor - Learn Cybersecurity by Doi    <a href="#challenges" class="btn">Start Learning</a><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #0f0f0f;
+      color: #e5e5e5;
+      line-height: 1.6;
+    }
+
+    /* Layout container */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    header {
+      background: #121212;
+      border-bottom: 1px solid #222;
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      color: #22c55e;
+      margin: 0;
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+    nav a {
+      color: #aaa;
+      margin-left: 30px;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color .2s;
+    }
+    nav a:hover {
+      color: #22c55e;
+    }
+    .toggle-btn {
+      margin-left: 20px;
+      padding: 8px 14px;
+      font-size: 0.9rem;
+      border: 1px solid #22c55e;
+      border-radius: 4px;
+      background: transparent;
+      color: #22c55e;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .toggle-btn:hover {
+      background: #22c55e;
+      color: #fff;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 120px 20px 100px;
+    }
+    .hero h2 {
+      font-size: 2.8rem;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: #bbb;
+      margin-bottom: 40px;
+    }
+    .btn-wrapper {
+      display: inline-block;
+    }
+
+    .btn-container {
+      position: relative;
+      width: 200px;
+      height: 60px;
+      border: none;
+      background: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-back {
+      width: 100%;
+      height: 100%;
+      border: 4px solid #22c55e;
+      border-radius: 25px;
+      background: #16a34a;
+      box-shadow:
+        0 24px 24px rgba(0, 0, 0, 0.15),
+        0 2px 0 rgba(0, 0, 0, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .btn-front {
+      position: absolute;
+      width: 98%;
+      height: 100%;
+      background: linear-gradient(#22c55e 60%, #16a34a 100%);
+      border-radius: 22px;
+      border: none;
+      transform: translateY(-6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.1rem;
+      color: #ffffff;
+      box-shadow:
+        0 4px 4px #16a34a,
+        inset 0 -2px 2px #22c55e;
+      transition: all 0.1s ease;
+      overflow: hidden;
+      animation: glow-up 2s infinite ease-in-out;
+    }
+
+    @keyframes glow-up {
+      50% {
+        transform: translateY(-8px);
+        box-shadow:
+          0 4px 12px #22c55e,
+          inset 0 -2px 2px #16a34a;
+      }
+    }
+
+    .btn-front p {
+      position: absolute;
+      transition: all 0.3s ease;
+      margin: 0;
+    }
+
+    .btn-front svg {
+      position: absolute;
+      left: 100%;
+      transition: all 0.3s ease;
+    }
+
+    .btn-container:hover .btn-back {
+      background: transparent;
+      transform: translateY(4px);
+      box-shadow:
+        0 12px 12px rgba(0, 0, 0, 0.15),
+        0 2px 0 rgba(0, 0, 0, 0.4);
+    }
+
+    .btn-container:hover .btn-front {
+      transform: translateY(-8px);
+      box-shadow: inset 0 -2px 2px #22c55e;
+      animation: none;
+    }
+
+    .btn-container:hover .btn-front p {
+      transform: translateX(-12px);
+    }
+
+    .btn-container:hover .btn-front svg {
+      left: 80%;
+    }
+
+    .btn-container:active .btn-front {
+      transform: translateY(2px);
+      box-shadow:
+        0 0 60px #22c55e,
+        inset 0 -2px 2px #16a34a;
+    }
+
+    /* Terminal */
+    .terminal {
+      background: #1e1e1e;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 700px;
+      margin: 60px auto;
+      padding: 24px;
+      font-family: monospace;
+      color: #22c55e;
+      text-align: left;
+      min-height: 160px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+    }
+
+    /* Features */
+    .features {
+      padding: 80px 20px;
+      background: #111;
+    }
+    .features .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+    }
+    .feature-card {
+      background: #1a1a1a;
+      padding: 40px 30px;
+      border-radius: 12px;
+      border: 1px solid #222;
+      transition: transform 0.3s, background 0.3s;
+    }
+    .feature-card:hover {
+      transform: translateY(-6px);
+      background: #222;
+    }
+    .feature-card h3 {
+      color: #22c55e;
+      margin-bottom: 14px;
+      font-size: 1.3rem;
+    }
+    .feature-card p {
+      color: #bbb;
+      font-size: 1rem;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: #121212;
+      border-top: 1px solid #222;
+      font-size: .9rem;
+      color: #777;
+    }
+
+    /* Dark Mode */
+    .dark-mode {
+      background: #fff;
+      color: #111;
+    }
+    .dark-mode header {
+      background: #f9f9f9;
+      border-bottom: 1px solid #ccc;
+    }
+    .dark-mode .feature-card {
+      background: #f5f5f5;
+      border: 1px solid #ddd;
+    }
+    .dark-mode .btn {
+      background: #111;
+      color: #22c55e;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>CyTutor</h1>
+      <nav>
+        <a href="Login.html">Login</a>
+        <button class="toggle-btn" id="darkModeToggle">☾ Mode</button>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero container" id="home">
+    <h2>Learn Cybersecurity by Solving Real Challenges</h2>
+    <p>Interactive labs, CTFs, and guided exercises designed to take you from beginner to pro.</p>
+        <div class="btn-wrapper">
+      <button class="btn-container" onclick="document.querySelector('Login.html').scrollIntoView({ behavior: 'smooth' })">
+        <div class="btn-back"></div>
+        <div class="btn-front">
+          <p>GET STARTED</p>
+          <svg width="24px" height="24px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <g fill="#ffffff">
+              <path d="M8 2.5a5.494 5.494 0 00-4.558 2.42.75.75 0 01-1.242-.84 7 7 0 110 7.841.75.75 0 111.242-.841A5.5 5.5 0 108 2.5z" />
+              <path d="M7.245 4.695a.75.75 0 00-.05 1.06l1.36 1.495H1.75a.75.75 0 000 1.5h6.805l-1.36 1.495a.75.75 0 001.11 1.01l2.5-2.75a.75.75 0 000-1.01l-2.5-2.75a.75.75 0 00-1.06-.05z" />
+            </g>
+          </svg>
+        </div>
+      </button>
+    </div>
+  </section>
+
+  <div class="terminal" id="terminal"></div>
+
+  <section class="features" id="challenges">
+    <div class="container">
+      <div class="feature-card">
+        <h3>Hands-On Labs</h3>
+        <p>Practice real-world attack and defense scenarios in a safe environment.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Gamified Learning</h3>
+        <p>Earn points, badges, and climb the leaderboard while improving your skills.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Guided Paths</h3>
+        <p>Follow structured learning tracks for Web, Forensics, Crypto, and more.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 CyTutor · Built for learners, by learners
+  </footer>
+
+  <script>
+    // Terminal typing effect
+    const terminal = document.getElementById("terminal");
+    const lines = [
+      "$ whoami",
+      "user → cybersecurity learner",
+      "$ ./cytutor --start",
+      "🚀 Launching your cybersecurity journey..."
+    ];
+    let lineIndex = 0, charIndex = 0;
+
+    function typeLine() {
+      if (lineIndex < lines.length) {
+        if (charIndex < lines[lineIndex].length) {
+          terminal.innerHTML += lines[lineIndex][charIndex];
+          charIndex++;
+          setTimeout(typeLine, 50);
+        } else {
+          terminal.innerHTML += "<br>";
+          lineIndex++;
+          charIndex = 0;
+          setTimeout(typeLine, 400);
+        }
+      }
+    }
+    typeLine();
+
+    // Smooth scrolling
+    document.querySelectorAll('nav a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Dark mode toggle
+    const toggleBtn = document.getElementById("darkModeToggle");
+    toggleBtn.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+    });
+  </script>
+</body>
+</html>
