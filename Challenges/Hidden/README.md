@@ -1,6 +1,6 @@
 # Hidden
 **Category:** Web Exploitation  
-**Difficulty:** Easy  
+**Difficulty:** Medium  
 
 ## Overview
 Hidden is a simple web challenge that focuses on **information disclosure** and **web reconnaissance**.  
