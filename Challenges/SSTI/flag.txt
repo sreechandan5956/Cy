@@ -1,0 +1,1 @@
+CTF{template_playground_flag}
