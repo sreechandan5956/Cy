@@ -2,205 +2,1049 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Learning Page | Hidden</title>
+<title>Learning Page | Hidden Content</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="styles/cyber-noir.css">
 <style>
-    body { 
-        margin:0; padding:0; font-family:"Poppins",sans-serif; 
-        background:#0b0f17; color:#e5e5e5;
+    :root {
+        --neon-green: #22c55e;
+        --neon-green-dark: #16a34a;
+        --bg-glass: rgba(15, 23, 42, 0.8);
+        --border-subtle: rgba(34, 197, 94, 0.2);
+        --border-glow: rgba(34, 197, 94, 0.5);
+        --text-primary: #e2e8f0;
+        --text-secondary: #94a3b8;
+        --radius-sm: 8px;
+        --radius-lg: 16px;
+        --transition-fast: all 0.2s ease;
+        --transition-bounce: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    /* ----------- CYTUTOR HEADER (Dark, Green Theme) ----------- */
-    header {
-        background: #121212;
-        border-bottom: 1px solid #222;
-        padding: 20px 0;
-        position: sticky;
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        color: var(--text-primary);
+        min-height: 100vh;
+        position: relative;
+    }
+
+    .cyber-grid {
+        position: fixed;
         top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+            linear-gradient(rgba(34, 197, 94, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(34, 197, 94, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    .cyber-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border-subtle);
+        padding: 1rem 0;
         z-index: 1000;
     }
 
-    .container-header {
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
+    .cyber-header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
-    /* Logo + neon green glow */
-    .logo {
-        position: relative;
-        display: inline-block;
-    }
-
-    .logo h1 {
-        color: #22c55e;
-        margin: 0;
-        font-size: 1.8rem;
+    .cyber-logo {
+        font-size: 1.5rem;
         font-weight: 700;
-        letter-spacing: -0.02em;
+        color: var(--neon-green);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
         position: relative;
-        z-index: 2;
     }
 
-    .logo::after {
+    .cyber-logo::after {
         content: "";
         position: absolute;
         top: 50%;
         left: 50%;
-        width: 130%;
-        height: 130%;
+        width: 150%;
+        height: 150%;
         transform: translate(-50%, -50%);
-        background: radial-gradient(circle, rgba(34,197,94,0.35) 0%, transparent 70%);
-        filter: blur(25px);
-        z-index: 1;
-        opacity: 0.9;
+        background: radial-gradient(circle, rgba(34,197,94,0.3) 0%, transparent 70%);
+        filter: blur(20px);
+        z-index: -1;
+        opacity: 0.8;
         border-radius: 50%;
     }
 
-    nav a {
-        color: #aaa;
-        margin-left: 30px;
+    .cyber-nav {
+        display: flex;
+        gap: 2rem;
+    }
+
+    .cyber-nav a {
+        color: var(--text-primary);
         text-decoration: none;
-        font-size: 1rem;
-        transition: color .2s;
+        font-weight: 500;
+        transition: var(--transition-fast);
+        position: relative;
     }
 
-    nav a:hover {
-        color: #22c55e;
+    .cyber-nav a::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--neon-green);
+        transition: var(--transition-fast);
     }
 
-    /* ---------------- PAGE CONTENT ---------------- */
-    .container { 
-        width:85%; max-width:950px; 
-        margin:40px auto; 
+    .cyber-nav a:hover {
+        color: var(--neon-green);
     }
 
-    /* GREEN gradient title */
-    h1 { 
-        font-size:42px; font-weight:700; text-align:center;
-        background:linear-gradient(90deg,#22c55e,#16a34a);
-        -webkit-background-clip:text; 
-        -webkit-text-fill-color:transparent;
-        margin-bottom:35px;
-        margin-top: 40px;
+    .cyber-nav a:hover::after {
+        width: 100%;
     }
 
-    /* Section titles — green */
-    h2 { 
-        font-size:24px; 
-        font-weight:600; 
-        margin-bottom:12px; 
-        color:#22c55e;
+    .page-content {
+        padding-top: 100px;
+        padding-bottom: 80px;
+    }
+
+    .page-title {
+        font-size: 3rem;
+        font-weight: 700;
+        text-align: center;
+        background: linear-gradient(135deg, var(--neon-green), #10b981, var(--neon-green-dark));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 1rem;
+        animation: titleFloat 3s ease-in-out infinite;
+    }
+
+    @keyframes titleFloat {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+
+    .page-subtitle {
+        text-align: center;
+        color: var(--text-secondary);
+        font-size: 1.125rem;
+        margin-bottom: 3rem;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .section {
-        background:#111725; 
-        padding:22px 25px; 
-        border-radius:18px; 
-        margin-bottom:30px;
-        box-shadow:0 0 12px rgba(34,197,94,0.06); 
-        border:1px solid rgba(34,197,94,0.10);
-        transition:0.2s ease;
+        background: var(--bg-glass);
+        padding: 2rem;
+        border-radius: var(--radius-lg);
+        margin-bottom: 2rem;
+        border: 1px solid var(--border-subtle);
+        backdrop-filter: blur(20px);
+        transition: var(--transition-bounce);
+        position: relative;
+        overflow: hidden;
     }
 
-    .section:hover { 
-        transform:translateY(-3px); 
-        box-shadow:0 0 18px rgba(34,197,94,0.18); 
+    .section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.1), transparent);
+        transition: left 0.5s;
     }
 
-    ul { line-height:1.8; padding-left:18px; }
-
-    /* Sub-titles — soft green */
-    .sub-title { 
-        font-size:18px; 
-        color:#5ef08f; 
-        margin-top:18px; 
-        font-weight:600; 
+    .section:hover::before {
+        left: 100%;
     }
 
-    /* Links — green instead of blue */
-    a { color:#5ef08f; }
+    .section:hover {
+        transform: translateY(-8px);
+        border-color: var(--border-glow);
+        box-shadow: 0 20px 40px rgba(34, 197, 94, 0.3);
+    }
+
+    .section-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .section-icon {
+        width: 48px;
+        height: 48px;
+        background: linear-gradient(135deg, var(--neon-green), var(--neon-green-dark));
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: white;
+        flex-shrink: 0;
+        box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
+    }
+
+    .section h2 {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: var(--neon-green);
+        margin: 0;
+    }
+
+    .section p {
+        line-height: 1.8;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+    }
+
+    .section ul {
+        line-height: 1.8;
+        padding-left: 0;
+        list-style: none;
+        color: var(--text-primary);
+    }
+
+    .section ul li {
+        margin-bottom: 1rem;
+        padding-left: 2rem;
+        position: relative;
+    }
+
+    .section ul li::before {
+        content: '\f00c';
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        position: absolute;
+        left: 0;
+        color: var(--neon-green);
+        font-size: 0.875rem;
+    }
+
+    .sub-section {
+        background: rgba(0, 0, 0, 0.3);
+        padding: 1.5rem;
+        border-radius: var(--radius-sm);
+        margin: 1.5rem 0;
+        border-left: 4px solid var(--neon-green);
+    }
+
+    .sub-title {
+        font-size: 1.25rem;
+        color: var(--neon-green);
+        margin-bottom: 1rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .sub-title i {
+        font-size: 1rem;
+    }
+
+    .section a {
+        color: var(--neon-green);
+        text-decoration: none;
+        transition: var(--transition-fast);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .section a:hover {
+        color: var(--neon-green-dark);
+        text-decoration: underline;
+    }
+
+    .section a i {
+        font-size: 0.875rem;
+    }
+
+    .section code {
+        background: rgba(34, 197, 94, 0.15);
+        padding: 0.25rem 0.5rem;
+        border-radius: 6px;
+        font-family: 'Fira Code', 'Courier New', monospace;
+        font-size: 0.9rem;
+        color: var(--neon-green);
+        border: 1px solid rgba(34, 197, 94, 0.3);
+    }
+
+    .code-block {
+        background: rgba(0, 0, 0, 0.5);
+        padding: 1.5rem;
+        border-radius: var(--radius-sm);
+        overflow-x: auto;
+        margin: 1rem 0;
+        border: 1px solid var(--border-subtle);
+        position: relative;
+    }
+
+    .code-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .code-label {
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .copy-btn {
+        background: var(--neon-green);
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.875rem;
+        font-weight: 600;
+        transition: var(--transition-fast);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .copy-btn:hover {
+        background: var(--neon-green-dark);
+        transform: scale(1.05);
+    }
+
+    .copy-btn:active {
+        transform: scale(0.95);
+    }
+
+    .code-block pre {
+        margin: 0;
+    }
+
+    .code-block code {
+        background: none;
+        padding: 0;
+        color: var(--text-primary);
+        border: none;
+        display: block;
+        white-space: pre-wrap;
+        word-break: break-all;
+    }
+
+    .resource-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+    }
+
+    .resource-card {
+        background: rgba(0, 0, 0, 0.3);
+        padding: 1.5rem;
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--border-subtle);
+        transition: var(--transition-bounce);
+        text-decoration: none;
+        display: block;
+    }
+
+    .resource-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--neon-green);
+        box-shadow: 0 10px 30px rgba(34, 197, 94, 0.2);
+    }
+
+    .resource-card h3 {
+        color: var(--neon-green);
+        font-size: 1.125rem;
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .resource-card p {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        margin: 0;
+    }
+
+    .badge {
+        display: inline-block;
+        background: rgba(34, 197, 94, 0.2);
+        color: var(--neon-green);
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        border: 1px solid var(--border-subtle);
+    }
+
+    .tip-box {
+        background: rgba(16, 185, 129, 0.1);
+        border-left: 4px solid #10b981;
+        padding: 1.5rem;
+        border-radius: var(--radius-sm);
+        margin: 1.5rem 0;
+        display: flex;
+        align-items: start;
+        gap: 1rem;
+    }
+
+    .tip-box i {
+        color: #10b981;
+        font-size: 1.5rem;
+        flex-shrink: 0;
+        margin-top: 0.2rem;
+    }
+
+    .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .feature-item {
+        background: rgba(0, 0, 0, 0.3);
+        padding: 1rem;
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--border-subtle);
+        transition: var(--transition-fast);
+    }
+
+    .feature-item:hover {
+        border-color: var(--neon-green);
+        transform: translateX(5px);
+    }
+
+    .feature-item strong {
+        color: var(--neon-green);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .interactive-demo {
+        background: rgba(0, 0, 0, 0.4);
+        padding: 2rem;
+        border-radius: var(--radius-sm);
+        margin: 1.5rem 0;
+        border: 2px dashed var(--border-subtle);
+        text-align: center;
+    }
+
+    .demo-button {
+        background: linear-gradient(135deg, var(--neon-green), var(--neon-green-dark));
+        color: white;
+        border: none;
+        padding: 1rem 2rem;
+        border-radius: var(--radius-sm);
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 600;
+        transition: var(--transition-bounce);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-top: 1rem;
+    }
+
+    .demo-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(34, 197, 94, 0.4);
+    }
+
+    .demo-button:active {
+        transform: translateY(-1px);
+    }
+
+    .hidden-message {
+        display: none;
+        margin-top: 1rem;
+        padding: 1rem;
+        background: rgba(34, 197, 94, 0.1);
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--neon-green);
+        animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hidden-message.visible {
+        display: block;
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            padding: 0 1rem;
+        }
+
+        .page-title {
+            font-size: 2rem;
+        }
+
+        .cyber-nav {
+            display: none;
+        }
+
+        .section h2 {
+            font-size: 1.5rem;
+        }
+
+        .section {
+            padding: 1.5rem;
+        }
+
+        .resource-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .feature-grid {
+            grid-template-columns: 1fr;
+        }
+    }
 </style>
 </head>
 
 <body>
+<div class="cyber-grid"></div>
 
-<!-- ---------------- HEADER ---------------- -->
-<header>
-    <div class="container-header">
-        <div class="logo">
-            <h1>CyTutor</h1>
-        </div>
+<!-- Hidden comment for educational purposes -->
+<!-- SECRET MESSAGE: Congratulations! You found the hidden comment. This demonstrates how HTML comments remain in the source code even though they're invisible on the rendered page. -->
 
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="dashboard.html">Dashboard</a>
-            <a href="challenges.html">Challenges</a>
-            <a href="domains.html">Domains</a>
-            <a href="signup.html">Sign Up</a>
+<header class="cyber-header">
+    <div class="container">
+        <a href="index.html" class="cyber-logo">
+            <i class="fas fa-shield-alt"></i>
+            CyTutor
+        </a>
+        <nav class="cyber-nav">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+            <a href="challenges.html"><i class="fas fa-trophy"></i> Challenges</a>
+            <a href="domains.html"><i class="fas fa-network-wired"></i> Domains</a>
+            <a href="signup.html"><i class="fas fa-user-plus"></i> Sign Up</a>
         </nav>
     </div>
 </header>
 
-<!-- ---------------- MAIN CONTENT ---------------- -->
+<main class="page-content">
 <div class="container">
 
-<h1>🔎 Understanding Hidden Content</h1>
+<h1 class="page-title">
+    <i class="fas fa-eye-slash"></i> Understanding Hidden Content
+</h1>
+<p class="page-subtitle">
+    Discover how to find and inspect information that exists in web pages but isn't visible to users
+</p>
 
 <div class="section">
-    <h2>📌 Introduction</h2>
-    <p>Some content on webpages isn’t visible directly but exists in the source code or network responses.  
-       Understanding how to inspect, read, and identify hidden information is essential for debugging, learning, and inspecting how a webpage works.</p>
+    <div class="section-header">
+        <div class="section-icon">
+            <i class="fas fa-lightbulb"></i>
+        </div>
+        <h2>Introduction</h2>
+    </div>
+    <p>Not all content on a webpage is immediately visible to users. Web pages contain hidden elements, comments, metadata, and embedded scripts that exist in the source code or network responses but don't appear in the rendered view.</p>
+    <p>Understanding how to inspect, read, and identify hidden information is essential for web development, debugging, security testing, and learning how websites work under the hood.</p>
+    
+    <div class="tip-box">
+        <i class="fas fa-info-circle"></i>
+        <div>
+            <strong>Did You Know?</strong> This very page contains hidden content! Try viewing the page source (Ctrl+U or Cmd+Option+U) to find a secret message hidden in an HTML comment.
+        </div>
+    </div>
 </div>
 
 <div class="section">
-    <h2>🎯 What You Will Learn</h2>
+    <div class="section-header">
+        <div class="section-icon">
+            <i class="fas fa-bullseye"></i>
+        </div>
+        <h2>What You Will Learn</h2>
+    </div>
     <ul>
-        <li>How to view the HTML source of a webpage</li>
-        <li>Understanding comments, hidden fields, and script blocks</li>
-        <li>Basics of browser Developer Tools</li>
+        <li>How to view the HTML source code of any webpage</li>
+        <li>Understanding HTML comments and why developers use them</li>
+        <li>Identifying hidden form fields and their purposes</li>
+        <li>Using browser Developer Tools for inspection</li>
+        <li>Finding information in JavaScript files and network requests</li>
+        <li>Common places where hidden content appears</li>
     </ul>
 </div>
 
 <div class="section">
-    <h2>🧩 Key Concepts</h2>
+    <div class="section-header">
+        <div class="section-icon">
+            <i class="fas fa-puzzle-piece"></i>
+        </div>
+        <h2>Key Concepts</h2>
+    </div>
 
-    <div class="sub-title">➤ Viewing Page Source</div>
-    <p>Every webpage is built using HTML, CSS, and JS. Right-click → <b>View Page Source</b> shows the raw file sent by the server.</p>
+    <div class="sub-section">
+        <div class="sub-title">
+            <i class="fas fa-file-code"></i>
+            Viewing Page Source
+        </div>
+        <p>Every webpage is built using HTML (structure), CSS (styling), and JavaScript (interactivity). When you view a page in your browser, you're seeing the rendered result. The raw HTML source shows exactly what the server sent to your browser.</p>
+        
+        <div class="feature-grid">
+            <div class="feature-item">
+                <strong><i class="fas fa-keyboard"></i> Windows/Linux</strong>
+                <p>Right-click → "View Page Source" or press <code>Ctrl + U</code></p>
+            </div>
+            <div class="feature-item">
+                <strong><i class="fab fa-apple"></i> macOS</strong>
+                <p>Right-click → "View Page Source" or press <code>Cmd + Option + U</code></p>
+            </div>
+        </div>
 
-    <div class="sub-title">➤ Hidden Information in Comments</div>
-    <p>Developers sometimes leave notes in HTML comments like <code>&lt;!-- todo: fix this --&gt;</code>. These don’t appear on the page but exist in the source.</p>
+        <p style="margin-top: 1rem;">The source view shows the complete HTML document, including everything the browser received from the server - both visible and hidden content.</p>
+    </div>
 
-    <div class="sub-title">➤ Hidden Inputs in Forms</div>
-    <p>Inputs like <code>&lt;input type="hidden"&gt;</code> store data invisible to the user but used by JavaScript or forms.</p>
+    <div class="sub-section">
+        <div class="sub-title">
+            <i class="fas fa-comment-slash"></i>
+            HTML Comments
+        </div>
+        <p>Developers use HTML comments to leave notes, document code, or temporarily disable sections. Comments use special syntax that tells the browser to ignore them when rendering the page.</p>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-label"><i class="fas fa-code"></i> Comment Syntax</span>
+                <button class="copy-btn" onclick="copyCode(this, 'code1')">
+                    <i class="fas fa-copy"></i> Copy
+                </button>
+            </div>
+            <pre><code id="code1">&lt;!-- This is a comment - it won't appear on the page --&gt;
+&lt;!-- TODO: Update this section before launch --&gt;
+&lt;!-- API Key: demo_key_12345 (NEVER do this!) --&gt;</code></pre>
+        </div>
 
-    <div class="sub-title">➤ JavaScript Files</div>
-    <p>Sometimes important text or hints exist inside linked <code>.js</code> files.  
-       These can be inspected through DevTools → Sources / Network.</p>
+        <p><strong>Common uses:</strong></p>
+        <ul>
+            <li>Documentation and notes for other developers</li>
+            <li>Temporarily disabling code during testing</li>
+            <li>Section markers in large HTML files</li>
+            <li>Debug information (sometimes accidentally left in production)</li>
+        </ul>
+    </div>
 
+    <div class="sub-section">
+        <div class="sub-title">
+            <i class="fas fa-eye-slash"></i>
+            Hidden Form Fields
+        </div>
+        <p>HTML forms can contain input fields that are invisible to users but store important data. These fields are commonly used to pass information between pages or track state.</p>
+        
+        <div class="code-block">
+            <div class="code-header">
+                <span class="code-label"><i class="fas fa-wpforms"></i> Hidden Input Example</span>
+                <button class="copy-btn" onclick="copyCode(this, 'code2')">
+                    <i class="fas fa-copy"></i> Copy
+                </button>
+            </div>
+            <pre><code id="code2">&lt;form action="/submit" method="POST"&gt;
+  &lt;input type="text" name="username" placeholder="Username"&gt;
+  &lt;input type="hidden" name="csrf_token" value="abc123xyz"&gt;
+  &lt;input type="hidden" name="user_id" value="42"&gt;
+  &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+        </div>
+
+        <p><strong>Common purposes:</strong></p>
+        <ul>
+            <li>CSRF tokens for security</li>
+            <li>User IDs or session identifiers</li>
+            <li>Tracking parameters</li>
+            <li>Form state or multi-step data</li>
+        </ul>
+    </div>
+
+    <div class="sub-section">
+        <div class="sub-title">
+            <i class="fab fa-js"></i>
+            JavaScript Files
+        </div>
+        <p>Websites load external JavaScript files that contain code, and sometimes these files include interesting information like API endpoints, configuration data, or even hardcoded credentials (which is a security issue!).</p>
+        
+        <div class="tip-box">
+            <i class="fas fa-search"></i>
+            <div>
+                <strong>How to Inspect:</strong> Open DevTools (F12) → Go to "Sources" or "Debugger" tab → Expand the file tree → Click on .js files to view their contents.
+            </div>
+        </div>
+
+        <p style="margin-top: 1rem;"><strong>What to look for:</strong></p>
+        <ul>
+            <li>API endpoints and URLs</li>
+            <li>Configuration variables</li>
+            <li>Feature flags or debug settings</li>
+            <li>Comments with TODO notes or hints</li>
+        </ul>
+    </div>
+
+    <div class="sub-section">
+        <div class="sub-title">
+            <i class="fas fa-tools"></i>
+            Browser Developer Tools
+        </div>
+        <p>Modern browsers include powerful built-in developer tools that let you inspect every aspect of a webpage in real-time.</p>
+
+        <div class="feature-grid">
+            <div class="feature-item">
+                <strong><i class="fas fa-code"></i> Elements/Inspector</strong>
+                <p>View and modify the HTML structure and CSS styles</p>
+            </div>
+            <div class="feature-item">
+                <strong><i class="fas fa-terminal"></i> Console</strong>
+                <p>Execute JavaScript and view errors or log messages</p>
+            </div>
+            <div class="feature-item">
+                <strong><i class="fas fa-network-wired"></i> Network</strong>
+                <p>Monitor all HTTP requests and responses</p>
+            </div>
+            <div class="feature-item">
+                <strong><i class="fas fa-folder-open"></i> Sources/Debugger</strong>
+                <p>Browse and debug JavaScript files</p>
+            </div>
+        </div>
+
+        <p style="margin-top: 1rem;"><span class="badge">Quick Access</span> Press <code>F12</code> or right-click anywhere → "Inspect" / "Inspect Element"</p>
+    </div>
 </div>
 
 <div class="section">
-    <h2>📝 Example</h2>
-    <pre><code>&lt;!-- Hidden message: check the script.js file --&gt;</code></pre>
-    <p>This won’t show on the webpage, but it appears in the source.</p>
-</div>
+    <div class="section-header">
+        <div class="section-icon">
+            <i class="fas fa-flask"></i>
+        </div>
+        <h2>Interactive Demo</h2>
+    </div>
+    
+    <div class="interactive-demo">
+        <h3 style="color: var(--neon-green); margin-bottom: 1rem;">
+            <i class="fas fa-magic"></i> Try It Yourself
+        </h3>
+        <p>Click the button below to reveal a "hidden" message. Then, inspect this page's source code to see how it's implemented!</p>
+        
+        <button class="demo-button" onclick="revealMessage()">
+            <i class="fas fa-unlock"></i>
+            Reveal Hidden Message
+        </button>
+        
+        <div id="hiddenMessage" class="hidden-message">
+            <i class="fas fa-check-circle" style="color: var(--neon-green); margin-right: 0.5rem;"></i>
+            <strong>Success!</strong> This message was hidden using CSS (<code>display: none</code>) and revealed with JavaScript. Even though it was invisible, it always existed in the HTML!
+        </div>
+    </div>
 
-<div class="section">
-    <h2>🌐 Helpful Resources</h2>
+    <p style="margin-top: 1.5rem;"><strong>Challenge:</strong> Try these actions to explore this page:</p>
     <ul>
-        <li><a href="https://developer.mozilla.org/en-US/docs/Tools/View_source" target="_blank">MDN – Viewing Page Source</a></li>
-        <li><a href="https://developer.chrome.com/docs/devtools" target="_blank">Chrome DevTools Guide</a></li>
-        <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/comment" target="_blank">MDN – HTML Comments</a></li>
+        <li>View the page source and find the HTML comment at the top</li>
+        <li>Open DevTools and inspect the hidden message div before clicking the button</li>
+        <li>Check the Network tab to see what files this page loads</li>
+        <li>Look at the JavaScript code in this HTML file to see how the reveal function works</li>
     </ul>
 </div>
 
+<div class="section">
+    <div class="section-header">
+        <div class="section-icon">
+            <i class="fas fa-search"></i>
+        </div>
+        <h2>Common Places to Find Hidden Content</h2>
+    </div>
+
+    <div class="feature-grid">
+        <div class="feature-item">
+            <strong><i class="fas fa-comment"></i> HTML Comments</strong>
+            <p>Developer notes, TODOs, or accidentally exposed information</p>
+        </div>
+        <div class="feature-item">
+            <strong><i class="fas fa-eye-slash"></i> Hidden Inputs</strong>
+            <p>Form fields with <code>type="hidden"</code> containing data</p>
+        </div>
+        <div class="feature-item">
+            <strong><i class="fas fa-code"></i> JavaScript Variables</strong>
+            <p>Global variables or constants in script files</p>
+        </div>
+        <div class="feature-item">
+            <strong><i class="fas fa-tag"></i> Meta Tags</strong>
+            <p>Metadata in the <code>&lt;head&gt;</code> section</p>
+        </div>
+        <div class="feature-item">
+            <strong><i class="fas fa-file-code"></i> Data Attributes</strong>
+            <p>Custom <code>data-*</code> attributes on HTML elements</p>
+        </div>
+        <div class="feature-item">
+            <strong><i class="fas fa-network-wired"></i> Network Responses</strong>
+            <p>API responses visible in the Network tab</p>
+        </div>
+    </div>
 </div>
+
+<div class="section">
+    <div class="section-header">
+        <div class="section-icon">
+            <i class="fas fa-code"></i>
+        </div>
+        <h2>Code Examples</h2>
+    </div>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-label"><i class="fas fa-file-code"></i> HTML with Hidden Elements</span>
+            <button class="copy-btn" onclick="copyCode(this, 'code3')">
+                <i class="fas fa-copy"></i> Copy
+            </button>
+        </div>
+        <pre><code id="code3">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;!-- This comment won't show on the page --&gt;
+  &lt;meta name="description" content="Hidden in metadata"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Visible Content&lt;/h1&gt;
+  
+  &lt;!-- Secret: The flag is CTF{hidden_in_comments} --&gt;
+  
+  &lt;div style="display:none;"&gt;
+    This div is hidden with CSS
+  &lt;/div&gt;
+  
+  &lt;div data-secret="important_value"&gt;
+    Check my data attribute!
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </div>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-label"><i class="fab fa-js"></i> JavaScript Console Commands</span>
+            <button class="copy-btn" onclick="copyCode(this, 'code4')">
+                <i class="fas fa-copy"></i> Copy
+            </button>
+        </div>
+        <pre><code id="code4">// Find all hidden input fields
+document.querySelectorAll('input[type="hidden"]');
+
+// Get all comments (requires more complex code)
+// Comments are not directly accessible via DOM
+
+// Find elements with data attributes
+document.querySelectorAll('[data-secret]');
+
+// View all loaded scripts
+Array.from(document.scripts).map(s => s.src);</code></pre>
+    </div>
+</div>
+
+<div class="section">
+    <div class="section-header">
+        <div class="section-icon">
+            <i class="fas fa-shield-alt"></i>
+        </div>
+        <h2>Security Implications</h2>
+    </div>
+    
+    <p>Understanding hidden content is crucial for both developers and security professionals:</p>
+
+    <div class="sub-section">
+        <div class="sub-title">
+            <i class="fas fa-exclamation-triangle"></i>
+            Common Security Mistakes
+        </div>
+        <ul>
+            <li><strong>Exposed API Keys:</strong> Hardcoded keys in JavaScript files or HTML comments</li>
+            <li><strong>Sensitive Comments:</strong> Developer notes containing passwords, endpoints, or system details</li>
+            <li><strong>Hidden Admin Links:</strong> Links to admin panels hidden with CSS but present in HTML</li>
+            <li><strong>Debug Information:</strong> Error messages or debug data left in production</li>
+            <li><strong>Client-Side Validation Only:</strong> Relying on hidden fields or JavaScript for security</li>
+        </ul>
+    </div>
+
+    <div class="tip-box">
+        <i class="fas fa-lightbulb"></i>
+        <div>
+            <strong>Best Practice:</strong> Never trust client-side data. Always validate and sanitize on the server. Assume that users can see and modify anything sent to their browser.
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="section-header">
+        <div class="section-icon">
+            <i class="fas fa-book-open"></i>
+        </div>
+        <h2>Helpful Resources</h2>
+    </div>
+
+    <div class="resource-grid">
+        <a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools" target="_blank" class="resource-card">
+            <h3><i class="fas fa-external-link-alt"></i> MDN - Browser DevTools</h3>
+            <p>Comprehensive guide to using browser developer tools for web inspection</p>
+        </a>
+
+        <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/hidden" target="_blank" class="resource-card">
+            <h3><i class="fas fa-external-link-alt"></i> MDN - Hidden Inputs</h3>
+            <p>Documentation on hidden form fields and their proper usage</p>
+        </a>
+
+        <a href="https://developer.chrome.com/docs/devtools/" target="_blank" class="resource-card">
+            <h3><i class="fas fa-external-link-alt"></i> Chrome DevTools</h3>
+            <p>Official Chrome DevTools documentation with tutorials and tips</p>
+        </a>
+
+        <a href="https://owasp.org/www-community/vulnerabilities/Information_exposure_through_query_strings_in_url" target="_blank" class="resource-card">
+            <h3><i class="fas fa-external-link-alt"></i> OWASP - Information Exposure</h3>
+            <p>Security considerations for exposed information in web applications</p>
+        </a>
+    </div>
+</div>
+
+<div class="section">
+    <div class="section-header">
+        <div class="section-icon">
+            <i class="fas fa-graduation-cap"></i>
+        </div>
+        <h2>Practice Exercises</h2>
+    </div>
+
+    <div class="feature-item" style="margin-bottom: 1rem;">
+        <strong><i class="fas fa-tasks"></i> Exercise 1: Source Code Hunt</strong>
+        <p>Find the hidden comment at the top of this page's source code. What secret message does it contain?</p>
+    </div>
+
+    <div class="feature-item" style="margin-bottom: 1rem;">
+        <strong><i class="fas fa-tasks"></i> Exercise 2: DevTools Exploration</strong>
+        <p>Open DevTools and navigate to the Elements tab. Find the hidden message div and observe how its CSS changes when you click the reveal button.</p>
+    </div>
+
+    <div class="feature-item" style="margin-bottom: 1rem;">
+        <strong><i class="fas fa-tasks"></i> Exercise 3: Network Analysis</strong>
+        <p>Open the Network tab in DevTools and refresh this page. How many resources are loaded? What types of files do you see?</p>
+    </div>
+
+    <div class="feature-item">
+        <strong><i class="fas fa-tasks"></i> Exercise 4: Real-World Practice</strong>
+        <p>Visit your favorite website and view its source code. Can you find any interesting comments, hidden fields, or metadata?</p>
+    </div>
+</div>
+
+</div>
+</main>
+
+<script>
+    function revealMessage() {
+        const message = document.getElementById('hiddenMessage');
+        message.classList.add('visible');
+        
+        // Optional: Scroll to the message
+        message.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function copyCode(button, codeId) {
+        const code = document.getElementById(codeId);
+        const text = code.textContent;
+        
+        navigator.clipboard.writeText(text).then(() => {
+            const originalHTML = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+            button.style.background = '#10b981';
+            
+            setTimeout(() => {
+                button.innerHTML = originalHTML;
+                button.style.background = '';
+            }, 2000);
+        }).catch(err => {
+            console.error('Failed to copy:', err);
+            alert('Failed to copy code. Please select and copy manually.');
+        });
+    }
+
+    // Add smooth scroll behavior for all internal links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+
+    // Add animation on scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.section').forEach(section => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(20px)';
+        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(section);
+    });
+</script>
 
 </body>
-</html>
+</html></a></div>div>ul></strong></li></div>h2>button></i></span>

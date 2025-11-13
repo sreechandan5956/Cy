@@ -4,201 +4,632 @@
 <meta charset="UTF-8">
 <title>Learning Page | Bookmarklet</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="styles/cyber-noir.css">
 <style>
-    body { 
-        margin:0; padding:0; font-family:"Poppins",sans-serif; 
-        background:#0b0f17; color:#e5e5e5;
+    :root {
+        --neon-green: #22c55e;
+        --neon-green-dark: #16a34a;
+        --bg-glass: rgba(15, 23, 42, 0.8);
+        --border-subtle: rgba(34, 197, 94, 0.2);
+        --border-glow: rgba(34, 197, 94, 0.5);
+        --text-primary: #e2e8f0;
+        --text-secondary: #94a3b8;
+        --radius-sm: 8px;
+        --radius-lg: 16px;
+        --transition-fast: all 0.2s ease;
+        --transition-bounce: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    /* ----------- UNIFORM CYTUTOR HEADER (Dark, Green, Cyber Noir) ----------- */
-    header {
-        background: #121212;
-        border-bottom: 1px solid #222;
-        padding: 20px 0;
-        position: sticky;
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        color: var(--text-primary);
+        min-height: 100vh;
+        position: relative;
+    }
+
+    .cyber-grid {
+        position: fixed;
         top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+            linear-gradient(rgba(34, 197, 94, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(34, 197, 94, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    .cyber-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border-subtle);
+        padding: 1rem 0;
         z-index: 1000;
     }
 
-    .container-header {
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
+    .cyber-header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
-    /* Logo with green glow */
-    .logo {
-        position: relative;
-        display: inline-block;
-    }
-
-    .logo h1 {
-        color: #22c55e;
-        margin: 0;
-        font-size: 1.8rem;
+    .cyber-logo {
+        font-size: 1.5rem;
         font-weight: 700;
-        letter-spacing: -0.02em;
-        position: relative;
-        z-index: 2;
-    }
-
-    .logo::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 130%;
-        height: 130%;
-        transform: translate(-50%, -50%);
-        background: radial-gradient(circle, rgba(34,197,94,0.35) 0%, transparent 70%);
-        filter: blur(25px);
-        z-index: 1;
-        opacity: 0.9;
-        border-radius: 50%;
-    }
-
-    /* Navigation */
-    nav a {
-        color: #aaa;
-        margin-left: 30px;
+        color: var(--neon-green);
         text-decoration: none;
-        font-size: 1rem;
-        transition: color .2s;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
     }
 
-    nav a:hover {
-        color: #22c55e;
+    .cyber-nav {
+        display: flex;
+        gap: 2rem;
     }
 
-    /* ---------------- PAGE CONTENT ---------------- */
-    .container { 
-        width:85%; max-width:950px; 
-        margin:40px auto; 
+    .cyber-nav a {
+        color: var(--text-primary);
+        text-decoration: none;
+        font-weight: 500;
+        transition: var(--transition-fast);
+        position: relative;
     }
 
-    /* Title (GREEN gradient, not blue) */
-    h1 {
-        font-size:42px; font-weight:700; text-align:center;
-        background:linear-gradient(90deg,#22c55e,#16a34a);
-        -webkit-background-clip:text; 
-        -webkit-text-fill-color:transparent;
-        margin-bottom:35px;
-        margin-top:40px;
+    .cyber-nav a::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--neon-green);
+        transition: var(--transition-fast);
     }
 
-    h2 { 
-        font-size:24px; font-weight:600; margin-bottom:12px; 
-        color:#22c55e;
+    .cyber-nav a:hover {
+        color: var(--neon-green);
+    }
+
+    .cyber-nav a:hover::after {
+        width: 100%;
+    }
+
+    .page-content {
+        padding-top: 100px;
+        padding-bottom: 80px;
+    }
+
+    .page-title {
+        font-size: 3rem;
+        font-weight: 700;
+        text-align: center;
+        background: linear-gradient(135deg, var(--neon-green), #10b981, var(--neon-green-dark));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 1rem;
+        animation: titleFloat 3s ease-in-out infinite;
+    }
+
+    @keyframes titleFloat {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+
+    .page-subtitle {
+        text-align: center;
+        color: var(--text-secondary);
+        font-size: 1.125rem;
+        margin-bottom: 3rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .section {
-        background:#111725; padding:22px 25px; border-radius:18px; margin-bottom:30px;
-        box-shadow:0 0 12px rgba(0,255,255,0.06); 
-        border:1px solid rgba(0,255,255,0.08);
-        transition:0.2s ease;
+        background: var(--bg-glass);
+        padding: 2rem;
+        border-radius: var(--radius-lg);
+        margin-bottom: 2rem;
+        border: 1px solid var(--border-subtle);
+        backdrop-filter: blur(20px);
+        transition: var(--transition-bounce);
+        position: relative;
+        overflow: hidden;
     }
 
-    .section:hover { 
-        transform:translateY(-3px); 
-        box-shadow:0 0 18px rgba(0,255,255,0.12); 
+    .section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.1), transparent);
+        transition: left 0.5s;
     }
 
-    ul { line-height:1.8; padding-left:18px; }
-
-    .sub-title { 
-        font-size:18px; color:#7bdfff; margin-top:18px; font-weight:600; 
+    .section:hover::before {
+        left: 100%;
     }
 
-    a { color:#63caff; }
+    .section:hover {
+        transform: translateY(-8px);
+        border-color: var(--border-glow);
+        box-shadow: 0 20px 40px rgba(34, 197, 94, 0.3);
+    }
+
+    .section-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .section-icon {
+        width: 48px;
+        height: 48px;
+        background: linear-gradient(135deg, var(--neon-green), var(--neon-green-dark));
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: white;
+        flex-shrink: 0;
+        box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
+    }
+
+    .section h2 {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: var(--neon-green);
+        margin: 0;
+    }
+
+    .section p {
+        line-height: 1.8;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+    }
+
+    .section ul {
+        line-height: 1.8;
+        padding-left: 0;
+        list-style: none;
+        color: var(--text-primary);
+    }
+
+    .section ul li {
+        margin-bottom: 1rem;
+        padding-left: 2rem;
+        position: relative;
+    }
+
+    .section ul li::before {
+        content: '\f00c';
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        position: absolute;
+        left: 0;
+        color: var(--neon-green);
+        font-size: 0.875rem;
+    }
+
+    .sub-section {
+        background: rgba(0, 0, 0, 0.3);
+        padding: 1.5rem;
+        border-radius: var(--radius-sm);
+        margin: 1.5rem 0;
+        border-left: 4px solid var(--neon-green);
+    }
+
+    .sub-title {
+        font-size: 1.25rem;
+        color: var(--neon-green);
+        margin-bottom: 1rem;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .sub-title i {
+        font-size: 1rem;
+    }
+
+    .section a {
+        color: var(--neon-green);
+        text-decoration: none;
+        transition: var(--transition-fast);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .section a:hover {
+        color: var(--neon-green-dark);
+        text-decoration: underline;
+    }
+
+    .section a i {
+        font-size: 0.875rem;
+    }
+
+    .section code {
+        background: rgba(34, 197, 94, 0.15);
+        padding: 0.25rem 0.5rem;
+        border-radius: 6px;
+        font-family: 'Fira Code', 'Courier New', monospace;
+        font-size: 0.9rem;
+        color: var(--neon-green);
+        border: 1px solid rgba(34, 197, 94, 0.3);
+    }
+
+    .code-block {
+        background: rgba(0, 0, 0, 0.5);
+        padding: 1.5rem;
+        border-radius: var(--radius-sm);
+        overflow-x: auto;
+        margin: 1rem 0;
+        border: 1px solid var(--border-subtle);
+        position: relative;
+    }
+
+    .code-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .code-label {
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .copy-btn {
+        background: var(--neon-green);
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.875rem;
+        font-weight: 600;
+        transition: var(--transition-fast);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .copy-btn:hover {
+        background: var(--neon-green-dark);
+        transform: scale(1.05);
+    }
+
+    .copy-btn:active {
+        transform: scale(0.95);
+    }
+
+    .code-block pre {
+        margin: 0;
+    }
+
+    .code-block code {
+        background: none;
+        padding: 0;
+        color: var(--text-primary);
+        border: none;
+        display: block;
+        white-space: pre-wrap;
+        word-break: break-all;
+    }
+
+    .resource-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+    }
+
+    .resource-card {
+        background: rgba(0, 0, 0, 0.3);
+        padding: 1.5rem;
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--border-subtle);
+        transition: var(--transition-bounce);
+        text-decoration: none;
+        display: block;
+    }
+
+    .resource-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--neon-green);
+        box-shadow: 0 10px 30px rgba(34, 197, 94, 0.2);
+    }
+
+    .resource-card h3 {
+        color: var(--neon-green);
+        font-size: 1.125rem;
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .resource-card p {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        margin: 0;
+    }
+
+    .badge {
+        display: inline-block;
+        background: rgba(34, 197, 94, 0.2);
+        color: var(--neon-green);
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        border: 1px solid var(--border-subtle);
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            padding: 0 1rem;
+        }
+
+        .page-title {
+            font-size: 2rem;
+        }
+
+        .cyber-nav {
+            display: none;
+        }
+
+        .section h2 {
+            font-size: 1.5rem;
+        }
+
+        .section {
+            padding: 1.5rem;
+        }
+
+        .resource-grid {
+            grid-template-columns: 1fr;
+        }
+    }
 </style>
 </head>
 
 <body>
+<div class="cyber-grid"></div>
 
-<!-- ---------------- HEADER ---------------- -->
-<header>
-    <div class="container-header">
-        <div class="logo">
-            <h1>CyTutor</h1>
-        </div>
-
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="dashboard.html">Dashboard</a>
-            <a href="challenges.html">Challenges</a>
-            <a href="domains.html">Domains</a>
-            <a href="signup.html">Sign Up</a>
+<header class="cyber-header">
+    <div class="container">
+        <a href="index.html" class="cyber-logo">
+            <i class="fas fa-shield-alt"></i>
+            CyTutor
+        </a>
+        <nav class="cyber-nav">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+            <a href="challenges.html"><i class="fas fa-trophy"></i> Challenges</a>
+            <a href="domains.html"><i class="fas fa-network-wired"></i> Domains</a>
+            <a href="signup.html"><i class="fas fa-user-plus"></i> Sign Up</a>
         </nav>
     </div>
 </header>
 
-<!-- ---------------- MAIN CONTENT ---------------- -->
+<main class="page-content">
 <div class="container">
 
-<h1>🔖 Understanding Bookmarklets</h1>
+<h1 class="page-title">
+    <i class="fas fa-bookmark"></i> Understanding Bookmarklets
+</h1>
+<p class="page-subtitle">
+    Master the art of browser automation with JavaScript-powered bookmarks
+</p>
 
 <div class="section">
-    <h2>📌 Introduction</h2>
-    <p>A bookmarklet is a small piece of JavaScript saved inside a browser bookmark.  
-       When clicked, it executes code on the current webpage.  
-       Bookmarklets are useful for automation, modifying pages, quick tools, and understanding how JavaScript interacts with the DOM.</p>
+    <div class="section-header">
+        <div class="section-icon">
+            <i class="fas fa-lightbulb"></i>
+        </div>
+        <h2>Introduction</h2>
+    </div>
+    <p>A <strong>bookmarklet</strong> is a small piece of JavaScript code saved inside a browser bookmark. When clicked, it executes directly on the current webpage, allowing you to automate tasks, modify pages, create quick tools, and understand how JavaScript interacts with the Document Object Model (DOM).</p>
+    <p>Think of bookmarklets as portable mini-applications that live in your browser's bookmark bar, ready to enhance any webpage you visit.</p>
 </div>
 
 <div class="section">
-    <h2>🎯 What You Will Learn</h2>
+    <div class="section-header">
+        <div class="section-icon">
+            <i class="fas fa-bullseye"></i>
+        </div>
+        <h2>What You Will Learn</h2>
+    </div>
     <ul>
-        <li>What bookmarklets are and how they work</li>
-        <li>JavaScript basics (functions, DOM access)</li>
-        <li>How the <code>javascript:</code> URL scheme works</li>
-        <li>How to write your own bookmarklet</li>
+        <li>What bookmarklets are and how they work under the hood</li>
+        <li>JavaScript fundamentals including functions and DOM manipulation</li>
+        <li>How the <code>javascript:</code> URL scheme enables code execution</li>
+        <li>Best practices for writing secure and efficient bookmarklets</li>
+        <li>Real-world applications and advanced techniques</li>
     </ul>
 </div>
 
 <div class="section">
-    <h2>🧩 Key Concepts</h2>
+    <div class="section-header">
+        <div class="section-icon">
+            <i class="fas fa-puzzle-piece"></i>
+        </div>
+        <h2>Key Concepts</h2>
+    </div>
 
-    <div class="sub-title">➤ What Is a Bookmarklet?</div>
-    <p>A bookmark that contains JavaScript instead of a normal URL.  
-       Format: <code>javascript:alert('Hello')</code></p>
+    <div class="sub-section">
+        <div class="sub-title">
+            <i class="fas fa-code"></i>
+            What Is a Bookmarklet?
+        </div>
+        <p>A bookmarklet is simply a bookmark that contains JavaScript code instead of a regular URL. The special <code>javascript:</code> protocol tells the browser to execute the code rather than navigate to a webpage.</p>
+        <p><strong>Basic Format:</strong> <code>javascript:alert('Hello, World!')</code></p>
+    </div>
 
-    <div class="sub-title">➤ DOM Manipulation</div>
-    <p>Bookmarklets modify the current page. Example:  
-       <code>document.body.style.background='black';</code></p>
+    <div class="sub-section">
+        <div class="sub-title">
+            <i class="fas fa-sitemap"></i>
+            DOM Manipulation
+        </div>
+        <p>Bookmarklets can access and modify the current page's Document Object Model (DOM). This allows you to change styles, content, structure, and behavior of any webpage.</p>
+        <p><strong>Example:</strong> <code>document.body.style.background = '#0f172a';</code></p>
+    </div>
 
-    <div class="sub-title">➤ URL Encoding</div>
-    <p>Sometimes the JavaScript must be encoded to be saved inside a bookmark.</p>
+    <div class="sub-section">
+        <div class="sub-title">
+            <i class="fas fa-link"></i>
+            URL Encoding
+        </div>
+        <p>Complex bookmarklets may need URL encoding to preserve special characters. Modern browsers handle this automatically, but understanding encoding helps debug issues.</p>
+        <p><span class="badge">Pro Tip</span> Use online URL encoders or JavaScript's <code>encodeURIComponent()</code> function.</p>
+    </div>
 
-    <div class="sub-title">➤ Security Restrictions</div>
-    <p>Modern browsers may restrict certain actions for security reasons.</p>
-
+    <div class="sub-section">
+        <div class="sub-title">
+            <i class="fas fa-shield-alt"></i>
+            Security Considerations
+        </div>
+        <p>Modern browsers implement security restrictions to protect users. Bookmarklets may be blocked on certain sites (banking, government) or when attempting sensitive operations like accessing cookies or local storage.</p>
+        <p><strong>Important:</strong> Only use bookmarklets from trusted sources to avoid malicious code execution.</p>
+    </div>
 </div>
 
 <div class="section">
-    <h2>📝 Examples</h2>
+    <div class="section-header">
+        <div class="section-icon">
+            <i class="fas fa-code-branch"></i>
+        </div>
+        <h2>Code Examples</h2>
+    </div>
 
-    <p><b>Example 1: Change page color</b></p>
-    <pre><code>javascript:document.body.style.background='red'</code></pre>
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-label"><i class="fas fa-palette"></i> Example 1: Change Page Background</span>
+            <button class="copy-btn" onclick="copyCode(this, 'code1')">
+                <i class="fas fa-copy"></i> Copy
+            </button>
+        </div>
+        <pre><code id="code1">javascript:document.body.style.background='linear-gradient(135deg, #667eea 0%, #764ba2 100%)';</code></pre>
+    </div>
 
-    <p><b>Example 2: Show all links</b></p>
-    <pre><code>javascript:alert([...document.links].map(l=>l.href).join('\n'))</code></pre>
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-label"><i class="fas fa-list"></i> Example 2: List All Page Links</span>
+            <button class="copy-btn" onclick="copyCode(this, 'code2')">
+                <i class="fas fa-copy"></i> Copy
+            </button>
+        </div>
+        <pre><code id="code2">javascript:alert([...document.links].map(l => l.href).join('\n'));</code></pre>
+    </div>
 
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-label"><i class="fas fa-images"></i> Example 3: Show All Images</span>
+            <button class="copy-btn" onclick="copyCode(this, 'code3')">
+                <i class="fas fa-copy"></i> Copy
+            </button>
+        </div>
+        <pre><code id="code3">javascript:document.querySelectorAll('img').forEach(img => console.log(img.src));</code></pre>
+    </div>
+
+    <div class="code-block">
+        <div class="code-header">
+            <span class="code-label"><i class="fas fa-edit"></i> Example 4: Make Page Editable</span>
+            <button class="copy-btn" onclick="copyCode(this, 'code4')">
+                <i class="fas fa-copy"></i> Copy
+            </button>
+        </div>
+        <pre><code id="code4">javascript:document.body.contentEditable='true'; document.designMode='on'; void 0;</code></pre>
+    </div>
 </div>
 
 <div class="section">
-    <h2>🌐 Helpful Resources</h2>
-    <ul>
-        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">MDN – JavaScript Basics</a></li>
-        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model" target="_blank">MDN – DOM Overview</a></li>
-        <li><a href="https://www.freecodecamp.org/news/what-are-bookmarklets" target="_blank">freeCodeCamp – What Are Bookmarklets?</a></li>
-    </ul>
+    <div class="section-header">
+        <div class="section-icon">
+            <i class="fas fa-graduation-cap"></i>
+        </div>
+        <h2>Learning Resources</h2>
+    </div>
+
+    <div class="resource-grid">
+        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" class="resource-card">
+            <h3><i class="fab fa-firefox-browser"></i> MDN JavaScript Guide</h3>
+            <p>Comprehensive JavaScript documentation and tutorials from Mozilla Developer Network.</p>
+        </a>
+
+        <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model" target="_blank" class="resource-card">
+            <h3><i class="fas fa-sitemap"></i> DOM Overview</h3>
+            <p>Learn how to manipulate web pages using the Document Object Model API.</p>
+        </a>
+
+        <a href="https://www.freecodecamp.org/news/what-are-bookmarklets" target="_blank" class="resource-card">
+            <h3><i class="fab fa-free-code-camp"></i> Bookmarklet Tutorial</h3>
+            <p>Beginner-friendly guide to creating and using bookmarklets effectively.</p>
+        </a>
+    </div>
 </div>
 
 </div>
+</main>
+
+<script>
+function copyCode(button, codeId) {
+    const code = document.getElementById(codeId).textContent;
+    navigator.clipboard.writeText(code).then(() => {
+        const originalHTML = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+        button.style.background = '#16a34a';
+        
+        setTimeout(() => {
+            button.innerHTML = originalHTML;
+            button.style.background = '';
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+    });
+}
+</script>
 
 </body>
 </html>
