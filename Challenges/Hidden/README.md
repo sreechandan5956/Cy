@@ -8,4 +8,4 @@ The website contains multiple unlinked pages that can be found by inspecting dev
 
 The goal is to identify these hidden files and access the final page that contains the flag.
 
-## Structure
+
