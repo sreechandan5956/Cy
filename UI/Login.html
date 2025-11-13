@@ -40,12 +40,14 @@
             align-items: center;
         }
 
-        header h1 {
-            color: #22c55e;
-            margin: 0;
-            font-size: 1.6rem;
-            font-weight: 700;
-        }
+      
+    header h1 {
+      color: #22c55e;
+      margin: 0;
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
 
         nav a {
             color: #aaa;
@@ -201,13 +203,47 @@
             border-color: #ddd;
             color: #111;
         }
+        /* Logo + glow effect */
+.logo {
+  position: relative;
+  display: inline-block;
+}
+
+.logo h1 {
+  color: #22c55e;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+  letter-spacing: -0.02em;
+}
+
+/* Neon glow behind the text */
+.logo::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 130%;
+  height: 130%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(34,197,94,0.35) 0%, transparent 70%);
+  filter: blur(25px);
+  z-index: 1;
+  opacity: 0.9;
+}
+
+
     </style>
 </head>
 <body>
     <header>
         <div class="container">
-            <h1>CyTutor</h1>
-            <nav>
+<div class="logo">
+        <h1>CyTutor</h1>
+        <div class="logo-glow"></div>
+      </div>            <nav>
                 <a href="index.html">Home</a>
                 <a href="signup.html">Sign Up</a>
                 <button class="toggle-btn" id="darkModeToggle">☾ Mode</button>

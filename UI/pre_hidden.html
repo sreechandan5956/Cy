@@ -6,25 +6,148 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-    body { margin:0; padding:0; font-family:"Poppins",sans-serif; background:#0b0f17; color:#e5e5e5;}
-    .container { width:85%; max-width:950px; margin:40px auto; }
-    h1 { font-size:42px; font-weight:700; text-align:center;
-         background:linear-gradient(90deg,#00eaff,#007bff);
-         -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-         margin-bottom:35px;}
-    h2 { font-size:24px; font-weight:600; margin-bottom:12px; color:#00eaff;}
+    body { 
+        margin:0; padding:0; font-family:"Poppins",sans-serif; 
+        background:#0b0f17; color:#e5e5e5;
+    }
+
+    /* ----------- CYTUTOR HEADER (Dark, Green Theme) ----------- */
+    header {
+        background: #121212;
+        border-bottom: 1px solid #222;
+        padding: 20px 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .container-header {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+    }
+
+    /* Logo + neon green glow */
+    .logo {
+        position: relative;
+        display: inline-block;
+    }
+
+    .logo h1 {
+        color: #22c55e;
+        margin: 0;
+        font-size: 1.8rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        position: relative;
+        z-index: 2;
+    }
+
+    .logo::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 130%;
+        height: 130%;
+        transform: translate(-50%, -50%);
+        background: radial-gradient(circle, rgba(34,197,94,0.35) 0%, transparent 70%);
+        filter: blur(25px);
+        z-index: 1;
+        opacity: 0.9;
+        border-radius: 50%;
+    }
+
+    nav a {
+        color: #aaa;
+        margin-left: 30px;
+        text-decoration: none;
+        font-size: 1rem;
+        transition: color .2s;
+    }
+
+    nav a:hover {
+        color: #22c55e;
+    }
+
+    /* ---------------- PAGE CONTENT ---------------- */
+    .container { 
+        width:85%; max-width:950px; 
+        margin:40px auto; 
+    }
+
+    /* GREEN gradient title */
+    h1 { 
+        font-size:42px; font-weight:700; text-align:center;
+        background:linear-gradient(90deg,#22c55e,#16a34a);
+        -webkit-background-clip:text; 
+        -webkit-text-fill-color:transparent;
+        margin-bottom:35px;
+        margin-top: 40px;
+    }
+
+    /* Section titles — green */
+    h2 { 
+        font-size:24px; 
+        font-weight:600; 
+        margin-bottom:12px; 
+        color:#22c55e;
+    }
+
     .section {
-        background:#111725; padding:22px 25px; border-radius:18px; margin-bottom:30px;
-        box-shadow:0 0 12px rgba(0,255,255,0.06); border:1px solid rgba(0,255,255,0.08);
+        background:#111725; 
+        padding:22px 25px; 
+        border-radius:18px; 
+        margin-bottom:30px;
+        box-shadow:0 0 12px rgba(34,197,94,0.06); 
+        border:1px solid rgba(34,197,94,0.10);
         transition:0.2s ease;
     }
-    .section:hover { transform:translateY(-3px); box-shadow:0 0 18px rgba(0,255,255,0.12); }
+
+    .section:hover { 
+        transform:translateY(-3px); 
+        box-shadow:0 0 18px rgba(34,197,94,0.18); 
+    }
+
     ul { line-height:1.8; padding-left:18px; }
-    .sub-title { font-size:18px; color:#7bdfff; margin-top:18px; font-weight:600; }
+
+    /* Sub-titles — soft green */
+    .sub-title { 
+        font-size:18px; 
+        color:#5ef08f; 
+        margin-top:18px; 
+        font-weight:600; 
+    }
+
+    /* Links — green instead of blue */
+    a { color:#5ef08f; }
 </style>
 </head>
+
 <body>
 
+<!-- ---------------- HEADER ---------------- -->
+<header>
+    <div class="container-header">
+        <div class="logo">
+            <h1>CyTutor</h1>
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="challenges.html">Challenges</a>
+            <a href="domains.html">Domains</a>
+            <a href="signup.html">Sign Up</a>
+        </nav>
+    </div>
+</header>
+
+<!-- ---------------- MAIN CONTENT ---------------- -->
 <div class="container">
 
 <h1>🔎 Understanding Hidden Content</h1>
@@ -72,7 +195,7 @@
     <h2>🌐 Helpful Resources</h2>
     <ul>
         <li><a href="https://developer.mozilla.org/en-US/docs/Tools/View_source" target="_blank">MDN – Viewing Page Source</a></li>
-        <li><a href="https://developer.chrome.com/docs/devtools" target="_blank">Chrome DevTools Official Guide</a></li>
+        <li><a href="https://developer.chrome.com/docs/devtools" target="_blank">Chrome DevTools Guide</a></li>
         <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/comment" target="_blank">MDN – HTML Comments</a></li>
     </ul>
 </div>
