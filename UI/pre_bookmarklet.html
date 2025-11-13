@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Learning Page | Bookmarklet</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    body { margin:0; padding:0; font-family:"Poppins",sans-serif; background:#0b0f17; color:#e5e5e5;}
+    .container { width:85%; max-width:950px; margin:40px auto; }
+    h1 {
+        font-size:42px; font-weight:700; text-align:center;
+        background:linear-gradient(90deg,#00eaff,#007bff);
+        -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+        margin-bottom:35px;
+    }
+    h2 { font-size:24px; font-weight:600; margin-bottom:12px; color:#00eaff;}
+    .section {
+        background:#111725; padding:22px 25px; border-radius:18px; margin-bottom:30px;
+        box-shadow:0 0 12px rgba(0,255,255,0.06); border:1px solid rgba(0,255,255,0.08);
+        transition:0.2s ease;
+    }
+    .section:hover { transform:translateY(-3px); box-shadow:0 0 18px rgba(0,255,255,0.12); }
+    ul { line-height:1.8; padding-left:18px; }
+    .sub-title { font-size:18px; color:#7bdfff; margin-top:18px; font-weight:600; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>🔖 Understanding Bookmarklets</h1>
+
+<div class="section">
+    <h2>📌 Introduction</h2>
+    <p>A bookmarklet is a small piece of JavaScript saved inside a browser bookmark.  
+       When clicked, it executes code on the current webpage.  
+       Bookmarklets are useful for automation, modifying pages, quick tools, and understanding how JavaScript interacts with the DOM.</p>
+</div>
+
+<div class="section">
+    <h2>🎯 What You Will Learn</h2>
+    <ul>
+        <li>What bookmarklets are and how they work</li>
+        <li>JavaScript basics (functions, DOM access)</li>
+        <li>How the <code>javascript:</code> URL scheme works</li>
+        <li>How to write your own bookmarklet</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>🧩 Key Concepts</h2>
+
+    <div class="sub-title">➤ What Is a Bookmarklet?</div>
+    <p>A bookmark that contains JavaScript instead of a normal URL.  
+       Format: <code>javascript:alert('Hello')</code></p>
+
+    <div class="sub-title">➤ DOM Manipulation</div>
+    <p>Bookmarklets modify the current page. Example:  
+       <code>document.body.style.background='black';</code></p>
+
+    <div class="sub-title">➤ URL Encoding</div>
+    <p>Sometimes the JavaScript must be encoded to be saved inside a bookmark.</p>
+
+    <div class="sub-title">➤ Security Restrictions</div>
+    <p>Modern browsers may restrict certain actions for security reasons.</p>
+
+</div>
+
+<div class="section">
+    <h2>📝 Examples</h2>
+
+    <p><b>Example 1: Change page color</b></p>
+    <pre><code>javascript:document.body.style.background='red'</code></pre>
+
+    <p><b>Example 2: Show all links</b></p>
+    <pre><code>javascript:alert([...document.links].map(l=>l.href).join('\n'))</code></pre>
+
+</div>
+<div class="section">
+    <h2>🌐 Helpful Resources</h2>
+    <ul>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">MDN – JavaScript Basics</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model" target="_blank">MDN – DOM Overview</a></li>
+        <li><a href="https://www.freecodecamp.org/news/what-are-bookmarklets" target="_blank">freeCodeCamp – What Are Bookmarklets?</a></li>
+    </ul>
+</div>
+</div>
+
+</body>
+</html>

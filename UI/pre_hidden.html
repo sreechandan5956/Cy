@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Learning Page | Hidden</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    body { margin:0; padding:0; font-family:"Poppins",sans-serif; background:#0b0f17; color:#e5e5e5;}
+    .container { width:85%; max-width:950px; margin:40px auto; }
+    h1 { font-size:42px; font-weight:700; text-align:center;
+         background:linear-gradient(90deg,#00eaff,#007bff);
+         -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+         margin-bottom:35px;}
+    h2 { font-size:24px; font-weight:600; margin-bottom:12px; color:#00eaff;}
+    .section {
+        background:#111725; padding:22px 25px; border-radius:18px; margin-bottom:30px;
+        box-shadow:0 0 12px rgba(0,255,255,0.06); border:1px solid rgba(0,255,255,0.08);
+        transition:0.2s ease;
+    }
+    .section:hover { transform:translateY(-3px); box-shadow:0 0 18px rgba(0,255,255,0.12); }
+    ul { line-height:1.8; padding-left:18px; }
+    .sub-title { font-size:18px; color:#7bdfff; margin-top:18px; font-weight:600; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>🔎 Understanding Hidden Content</h1>
+
+<div class="section">
+    <h2>📌 Introduction</h2>
+    <p>Some content on webpages isn’t visible directly but exists in the source code or network responses.  
+       Understanding how to inspect, read, and identify hidden information is essential for debugging, learning, and inspecting how a webpage works.</p>
+</div>
+
+<div class="section">
+    <h2>🎯 What You Will Learn</h2>
+    <ul>
+        <li>How to view the HTML source of a webpage</li>
+        <li>Understanding comments, hidden fields, and script blocks</li>
+        <li>Basics of browser Developer Tools</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>🧩 Key Concepts</h2>
+
+    <div class="sub-title">➤ Viewing Page Source</div>
+    <p>Every webpage is built using HTML, CSS, and JS. Right-click → <b>View Page Source</b> shows the raw file sent by the server.</p>
+
+    <div class="sub-title">➤ Hidden Information in Comments</div>
+    <p>Developers sometimes leave notes in HTML comments like <code>&lt;!-- todo: fix this --&gt;</code>. These don’t appear on the page but exist in the source.</p>
+
+    <div class="sub-title">➤ Hidden Inputs in Forms</div>
+    <p>Inputs like <code>&lt;input type="hidden"&gt;</code> store data invisible to the user but used by JavaScript or forms.</p>
+
+    <div class="sub-title">➤ JavaScript Files</div>
+    <p>Sometimes important text or hints exist inside linked <code>.js</code> files.  
+       These can be inspected through DevTools → Sources / Network.</p>
+
+</div>
+
+<div class="section">
+    <h2>📝 Example</h2>
+    <pre><code>&lt;!-- Hidden message: check the script.js file --&gt;</code></pre>
+    <p>This won’t show on the webpage, but it appears in the source.</p>
+</div>
+
+<div class="section">
+    <h2>🌐 Helpful Resources</h2>
+    <ul>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Tools/View_source" target="_blank">MDN – Viewing Page Source</a></li>
+        <li><a href="https://developer.chrome.com/docs/devtools" target="_blank">Chrome DevTools Official Guide</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/comment" target="_blank">MDN – HTML Comments</a></li>
+    </ul>
+</div>
+
+</div>
+
+</body>
+</html>
