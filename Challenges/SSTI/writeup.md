@@ -1,4 +1,4 @@
-1. Test if template code runs
+### 1. Test if template code runs
 Enter this into the text box:
 {{ 5 + 5 }}
 
