@@ -6,6 +6,9 @@ The application demonstrates a fundamental security flaw: authorization is based
 Because the cookie originates from and is modifiable by the client, privilege escalation is trivial.
 
 ## Application Behavior
+Index page<br>
+<img width="746" height="352" alt="image" src="https://github.com/user-attachments/assets/1edf6342-6a98-4656-94b9-c9a8e493b650" />
+
 1. `index.php` sets a cookie if one does not already exist:
    ```php
    if (!isset($_COOKIE['isAdmin'])) {
@@ -26,6 +29,8 @@ if ($isAdmin === 1) { /* show admin content */ }<br>
 * No server-side session or role verification.
 
 ### Exploitation
+<img width="654" height="309" alt="image" src="https://github.com/user-attachments/assets/041d17e1-23dc-4098-871c-7dd5565166fe" />
+
 <img width="1105" height="464" alt="image" src="https://github.com/user-attachments/assets/ed46c611-bfc2-4816-888d-c53f38bd486c" />
 
 Modify the isAdmin cookie in the browser or via a crafted HTTP request:
