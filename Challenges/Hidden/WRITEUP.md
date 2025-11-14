@@ -6,7 +6,7 @@
 
 ## Step 1 — Explore the Homepage  
 Open the challenge in a browser:<br>
-<img width="452" height="274" alt="image" src="https://github.com/user-attachments/assets/659d0c07-5d76-4198-a057-61a8f7f7dd55" />
+<img width="1706" height="729" alt="image" src="https://github.com/user-attachments/assets/54445ad2-f527-47ae-81e2-5c0d739871a0" />
 
 View the page source (Ctrl + U).  
 A developer comment reveals two unlinked pages:
@@ -43,12 +43,12 @@ This confirms that the real flag page is not indexed.
 ---
 
 ## Step 4 — Inspect the Hidden Pages  
-<img width="531" height="247" alt="image" src="https://github.com/user-attachments/assets/981a8b73-e8d0-4172-954a-a268f14eb0ab" /><br>
+<img width="1257" height="400" alt="image" src="https://github.com/user-attachments/assets/4cd572cd-b07a-4a5a-a75b-74a79d1474b2" />
 A simple decoy page.
 
 Then visit:
 
-<img width="532" height="239" alt="image" src="https://github.com/user-attachments/assets/6d7944ca-cd1d-4562-b7d4-00e32405384f" />
+<img width="1420" height="239" alt="image" src="https://github.com/user-attachments/assets/2363b178-94f5-4cb2-b07d-d6610552a51e" />
 <img width="615" height="319" alt="image" src="https://github.com/user-attachments/assets/d75a4517-c49d-4fcd-a78a-cd793f7cd58e" />
 <br>
 This page contains a Base64 string in a comment:
