@@ -69,7 +69,7 @@ This reveals the filename of the final hidden page.
 ---
 
 ## Step 5 — Access the Final Page  
-<img width="564" height="284" alt="image" src="https://github.com/user-attachments/assets/ff891f4d-41d6-46a7-8075-c6a2a8f8fd02" />
+<img width="1751" height="432" alt="image" src="https://github.com/user-attachments/assets/0d6a2148-6e2d-4f6f-b29c-496ce3975ede" />
 
 This page contains the flag:
 CTF{find_hidden_pages_and_read_the_source}
