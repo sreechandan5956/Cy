@@ -14,15 +14,16 @@ Follow these steps to run the challenge locally:
 
 docker build -t template-playground .
 
-### **2.Run the container
+### 2.Run the container
 docker run --rm -p 5000:5000 --name tpl template-playground
 
-### **3.Open the challenge in your browser
+### 3.Open the challenge in your browser
 http://localhost:5000
 
 
 
 Flag format:
 CTF{...}
+
 
 
