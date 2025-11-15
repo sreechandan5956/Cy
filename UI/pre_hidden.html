@@ -30,24 +30,22 @@
 
     body {
         font-family: 'Inter', sans-serif;
-        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        background: #0b0f17;
         color: var(--text-primary);
         min-height: 100vh;
         position: relative;
+        overflow-x: hidden;
     }
 
-    .cyber-grid {
+    .cyber-bg {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: 
-            linear-gradient(rgba(34, 197, 94, 0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(34, 197, 94, 0.03) 1px, transparent 1px);
-        background-size: 50px 50px;
+        z-index: -1;
+        opacity: 0.4;
         pointer-events: none;
-        z-index: 0;
     }
 
     .container {
@@ -554,7 +552,7 @@
 </head>
 
 <body>
-<div class="cyber-grid"></div>
+<canvas id="particles-bg" class="cyber-bg"></canvas>
 
 <!-- Hidden comment for educational purposes -->
 <!-- SECRET MESSAGE: Congratulations! You found the hidden comment. This demonstrates how HTML comments remain in the source code even though they're invisible on the rendered page. -->
@@ -1044,6 +1042,80 @@ Array.from(document.scripts).map(s => s.src);</code></pre>
         section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(section);
     });
+
+    // Particle animation
+    const canvas = document.getElementById('particles-bg');
+    const ctx = canvas.getContext('2d');
+    const particles = [];
+    const particleCount = 100;
+
+    function setCanvasSize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    setCanvasSize();
+    window.addEventListener('resize', setCanvasSize);
+
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.vx = Math.random() * 0.5 - 0.25;
+            this.vy = Math.random() * 0.5 - 0.25;
+            this.size = Math.random() * 2;
+            this.color = Math.random() < 0.5 ? '#22c55e' : '#10b981';
+        }
+
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+
+            if (this.x < 0) this.x = canvas.width;
+            if (this.x > canvas.width) this.x = 0;
+            if (this.y < 0) this.y = canvas.height;
+            if (this.y > canvas.height) this.y = 0;
+        }
+
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = this.color;
+            ctx.fill();
+        }
+    }
+
+    for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+    }
+
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        particles.forEach(particle => {
+            particle.update();
+            particle.draw();
+        });
+
+        particles.forEach((p1, i) => {
+            particles.slice(i + 1).forEach(p2 => {
+                const dx = p1.x - p2.x;
+                const dy = p1.y - p2.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < 150) {
+                    ctx.beginPath();
+                    ctx.moveTo(p1.x, p1.y);
+                    ctx.lineTo(p2.x, p2.y);
+                    ctx.strokeStyle = `rgba(34, 197, 94, ${0.1 * (1 - distance/150)})`;
+                    ctx.stroke();
+                }
+            });
+        });
+
+        requestAnimationFrame(animateParticles);
+    }
+
+    animateParticles();
 </script>
 
 </body>
