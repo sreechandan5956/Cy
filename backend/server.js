@@ -5,6 +5,8 @@ const helmet = require('helmet');
 const cors = require('cors');
 const rateLimit = require('express-rate-limit');
 const authRoutes = require('./routes/auth');
+const userRoutes = require('./routes/user');
+const emailRoutes = require('./routes/email');
 
 const app = express();
 
@@ -38,6 +40,8 @@ app.use(express.static(path.join(__dirname, '../UI')));
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/user', userRoutes);
+app.use('/api/email', emailRoutes);
 
 // Health check
 app.get('/health', (req, res) => {

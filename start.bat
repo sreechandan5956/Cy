@@ -19,9 +19,19 @@ if not exist backend\node_modules (
     echo.
 )
 
+REM Create uploads directory if it doesn't exist
+if not exist UI\uploads\avatars (
+    echo Creating uploads directory...
+    mkdir UI\uploads\avatars
+    echo.
+)
+
 REM Start the server
 echo Starting server on http://localhost:5000
 echo Frontend will be available at http://localhost:5000
+echo API endpoints: http://localhost:5000/api
+echo.
+echo Press Ctrl+C to stop the server
 echo.
 cd backend
 call npm start

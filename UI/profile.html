@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Profile | CyTutor</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="styles/cyber-noir.css">
+<link rel="stylesheet" href="styles/components.css">
+<style>
+    body {
+        background: #000000;
+        overflow-x: hidden;
+    }
+
+    .cyber-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.4;
+        pointer-events: none;
+    }
+
+    .page-content {
+        padding-top: 100px;
+        padding-bottom: 80px;
+    }
+
+    .profile-header {
+        background: rgba(10, 10, 10, 0.95);
+        border: 1px solid rgba(34, 197, 94, 0.2);
+        border-radius: 16px;
+        padding: 0;
+        margin-bottom: 2rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .profile-banner {
+        height: 200px;
+        background: linear-gradient(135deg, rgba(34, 197, 94, 0.3) 0%, rgba(16, 185, 129, 0.2) 100%);
+        position: relative;
+    }
+
+    .profile-content {
+        padding: 0 2rem 2rem;
+        position: relative;
+        margin-top: -80px;
+    }
+
+    .profile-avatar-wrapper {
+        display: inline-block;
+        position: relative;
+    }
+
+    .profile-avatar {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+        border: 5px solid #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3.5rem;
+        font-weight: 700;
+        color: #000;
+        box-shadow: 0 10px 40px rgba(34, 197, 94, 0.5);
+        overflow: hidden;
+    }
+
+    .profile-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .profile-info {
+        margin-top: 1.5rem;
+    }
+
+    .profile-name {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #22c55e;
+        margin-bottom: 0.5rem;
+    }
+
+    .profile-bio {
+        color: #aaa;
+        font-size: 1.125rem;
+        margin-bottom: 1rem;
+    }
+
+    .profile-meta {
+        display: flex;
+        gap: 2rem;
+        color: #aaa;
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    .profile-meta i {
+        color: #22c55e;
+        margin-right: 0.5rem;
+    }
+
+    .profile-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1.5rem;
+        margin-top: 2rem;
+    }
+
+    .stat-card {
+        background: rgba(0, 0, 0, 0.6);
+        border: 1px solid rgba(34, 197, 94, 0.2);
+        border-radius: 12px;
+        padding: 1.5rem;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        border-color: #22c55e;
+        box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3);
+    }
+
+    .stat-value {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #22c55e;
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+        color: #aaa;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .profile-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .section {
+        background: rgba(10, 10, 10, 0.95);
+        border: 1px solid rgba(34, 197, 94, 0.2);
+        border-radius: 16px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #22c55e;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .info-list {
+        display: grid;
+        gap: 1rem;
+    }
+
+    .info-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem;
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: 8px;
+        border: 1px solid rgba(34, 197, 94, 0.1);
+    }
+
+    .info-label {
+        color: #aaa;
+        font-weight: 500;
+    }
+
+    .info-value {
+        color: #e5e5e5;
+        font-weight: 600;
+    }
+
+    .activity-list {
+        display: grid;
+        gap: 1rem;
+    }
+
+    .activity-item {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem;
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: 8px;
+        border: 1px solid rgba(34, 197, 94, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .activity-item:hover {
+        border-color: #22c55e;
+        transform: translateX(5px);
+    }
+
+    .activity-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #000;
+        flex-shrink: 0;
+    }
+
+    .activity-content {
+        flex: 1;
+    }
+
+    .activity-title {
+        color: #e5e5e5;
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+    }
+
+    .activity-time {
+        color: #aaa;
+        font-size: 0.875rem;
+    }
+
+    .achievement-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 1rem;
+    }
+
+    .achievement-card {
+        background: rgba(0, 0, 0, 0.6);
+        border: 1px solid rgba(34, 197, 94, 0.2);
+        border-radius: 8px;
+        padding: 1rem;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+
+    .achievement-card:hover {
+        transform: translateY(-5px);
+        border-color: #22c55e;
+        box-shadow: 0 10px 30px rgba(34, 197, 94, 0.2);
+    }
+
+    .achievement-icon {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .achievement-name {
+        font-size: 0.75rem;
+        color: #e5e5e5;
+        font-weight: 600;
+    }
+
+    .loading {
+        text-align: center;
+        padding: 4rem;
+        color: #aaa;
+    }
+
+    .spinner {
+        width: 50px;
+        height: 50px;
+        border: 4px solid rgba(34, 197, 94, 0.2);
+        border-top-color: #22c55e;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+        margin: 0 auto 1rem;
+    }
+
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 968px) {
+        .profile-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .profile-stats {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+</style>
+</head>
+
+<body>
+<canvas id="particles-bg" class="cyber-bg"></canvas>
+
+<header class="cyber-header">
+    <div class="container">
+        <a href="index.html" class="cyber-logo">CyTutor</a>
+        <nav class="cyber-nav">
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="challenges.html">Challenges</a>
+            <a href="domains.html">Domains</a>
+            <div class="user-menu">
+                <div class="user-toggle" id="userToggle">
+                    <div class="user-avatar" id="headerAvatar">
+                        <span id="headerInitials">U</span>
+                    </div>
+                    <span class="user-name" id="headerUsername">Loading...</span>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main class="page-content">
+<div class="container">
+
+<div id="loadingState" class="loading">
+    <div class="spinner"></div>
+    <p>Loading profile...</p>
+</div>
+
+<div id="profileContent" style="display: none;">
+    <div class="profile-header">
+        <div class="profile-banner"></div>
+        <div class="profile-content">
+            <div class="profile-avatar-wrapper">
+                <div class="profile-avatar" id="profileAvatar">
+                    <span id="profileInitials">U</span>
+                </div>
+            </div>
+            <div class="profile-info">
+                <h1 class="profile-name" id="profileName">User Name</h1>
+                <p class="profile-bio" id="profileBio">Cybersecurity Enthusiast</p>
+                <div class="profile-meta">
+                    <span><i class="fas fa-envelope"></i><span id="profileEmail">email@example.com</span></span>
+                    <span><i class="fas fa-map-marker-alt"></i><span id="profileLocation">Location</span></span>
+                    <span><i class="fas fa-calendar"></i>Joined <span id="profileJoined">2024</span></span>
+                </div>
+            </div>
+
+            <div class="profile-stats">
+                <div class="stat-card">
+                    <span class="stat-value" id="statChallenges">0</span>
+                    <span class="stat-label">Challenges Solved</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="statPoints">0</span>
+                    <span class="stat-label">Total Points</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="statRank">#-</span>
+                    <span class="stat-label">Global Rank</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="statStreak">0</span>
+                    <span class="stat-label">Day Streak</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="profile-grid">
+        <div>
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-clock"></i>
+                    Recent Activity
+                </h2>
+                <div class="activity-list" id="activityList">
+                    <div class="activity-item">
+                        <div class="activity-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-title">No recent activity</div>
+                            <div class="activity-time">Start solving challenges!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-user"></i>
+                    Account Information
+                </h2>
+                <div class="info-list">
+                    <div class="info-item">
+                        <span class="info-label">Username</span>
+                        <span class="info-value" id="infoUsername">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Email</span>
+                        <span class="info-value" id="infoEmail">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Member Since</span>
+                        <span class="info-value" id="infoJoined">-</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Last Login</span>
+                        <span class="info-value" id="infoLastLogin">Just now</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-award"></i>
+                    Achievements
+                </h2>
+                <div class="achievement-grid" id="achievementGrid">
+                    <div class="achievement-card">
+                        <div class="achievement-icon">🏆</div>
+                        <div class="achievement-name">First Steps</div>
+                    </div>
+                    <div class="achievement-card">
+                        <div class="achievement-icon">🔥</div>
+                        <div class="achievement-name">On Fire</div>
+                    </div>
+                    <div class="achievement-card">
+                        <div class="achievement-icon">⭐</div>
+                        <div class="achievement-name">Rising Star</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</main>
+
+<script>
+// Skip authentication - use dummy credentials for testing
+const user = {
+    name: 'John Doe',
+    email: 'john.doe@cytutor.com',
+    username: 'johndoe',
+    createdAt: '2024-01-15T10:30:00Z'
+};
+
+// Function to get initials from name
+function getInitials(name) {
+    if (!name) return 'U';
+    const parts = name.trim().split(' ');
+    if (parts.length >= 2) {
+        return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+    }
+    return name.substring(0, 2).toUpperCase();
+}
+
+// Function to format date
+function formatDate(dateString) {
+    if (!dateString) return 'Recently';
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+// Function to fetch user profile - using dummy data
+async function fetchUserProfile() {
+    // Simulate loading delay
+    await new Promise(resolve => setTimeout(resolve, 500));
+    
+    // Return dummy profile data
+    return {
+        name: user.name,
+        email: user.email,
+        username: user.username,
+        location: 'San Francisco, CA',
+        bio: 'Cybersecurity Enthusiast | Ethical Hacker | CTF Player',
+        joinedDate: user.createdAt,
+        stats: {
+            challengesSolved: 42,
+            totalPoints: 8750,
+            globalRank: 127,
+            dayStreak: 15
+        },
+        recentActivity: [
+            {
+                icon: 'trophy',
+                title: 'Completed SQL Injection Challenge',
+                time: '2 hours ago'
+            },
+            {
+                icon: 'star',
+                title: 'Earned "Quick Learner" Badge',
+                time: '1 day ago'
+            },
+            {
+                icon: 'code',
+                title: 'Started Web Security Domain',
+                time: '3 days ago'
+            },
+            {
+                icon: 'fire',
+                title: 'Achieved 15-day streak',
+                time: '5 days ago'
+            }
+        ]
+    };
+}
+
+// Function to update UI with profile data
+function updateProfileUI(profileData) {
+    const initials = getInitials(profileData.name);
+    
+    // Update header
+    document.getElementById('headerUsername').textContent = profileData.name;
+    document.getElementById('headerInitials').textContent = initials;
+    
+    // Update profile section
+    document.getElementById('profileName').textContent = profileData.name;
+    document.getElementById('profileBio').textContent = profileData.bio;
+    document.getElementById('profileEmail').textContent = profileData.email;
+    document.getElementById('profileLocation').textContent = profileData.location;
+    document.getElementById('profileJoined').textContent = new Date(profileData.joinedDate).getFullYear();
+    document.getElementById('profileInitials').textContent = initials;
+    
+    // Update stats
+    document.getElementById('statChallenges').textContent = profileData.stats.challengesSolved;
+    document.getElementById('statPoints').textContent = profileData.stats.totalPoints.toLocaleString();
+    document.getElementById('statRank').textContent = `#${profileData.stats.globalRank}`;
+    document.getElementById('statStreak').textContent = profileData.stats.dayStreak;
+    
+    // Update info section
+    document.getElementById('infoUsername').textContent = profileData.username;
+    document.getElementById('infoEmail').textContent = profileData.email;
+    document.getElementById('infoJoined').textContent = formatDate(profileData.joinedDate);
+    
+    // Update recent activity
+    const activityList = document.getElementById('activityList');
+    if (profileData.recentActivity && profileData.recentActivity.length > 0) {
+        activityList.innerHTML = profileData.recentActivity.map(activity => `
+            <div class="activity-item">
+                <div class="activity-icon">
+                    <i class="fas fa-${activity.icon}"></i>
+                </div>
+                <div class="activity-content">
+                    <div class="activity-title">${activity.title}</div>
+                    <div class="activity-time">${activity.time}</div>
+                </div>
+            </div>
+        `).join('');
+    }
+}
+
+// Load profile data
+async function loadProfile() {
+    try {
+        const profileData = await fetchUserProfile();
+        updateProfileUI(profileData);
+        
+        // Hide loading, show content
+        document.getElementById('loadingState').style.display = 'none';
+        document.getElementById('profileContent').style.display = 'block';
+    } catch (error) {
+        console.error('Error loading profile:', error);
+        alert('Failed to load profile. Please try again.');
+    }
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+    loadProfile();
+});
+
+// Particle animation
+const canvas = document.getElementById('particles-bg');
+const ctx = canvas.getContext('2d');
+const particles = [];
+const particleCount = 100;
+
+function setCanvasSize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+setCanvasSize();
+window.addEventListener('resize', setCanvasSize);
+
+class Particle {
+    constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = Math.random() * 0.5 - 0.25;
+        this.vy = Math.random() * 0.5 - 0.25;
+        this.size = Math.random() * 2;
+        this.color = Math.random() < 0.5 ? '#22c55e' : '#10b981';
+    }
+
+    update() {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        if (this.x < 0) this.x = canvas.width;
+        if (this.x > canvas.width) this.x = 0;
+        if (this.y < 0) this.y = canvas.height;
+        if (this.y > canvas.height) this.y = 0;
+    }
+
+    draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+    }
+}
+
+for (let i = 0; i < particleCount; i++) {
+    particles.push(new Particle());
+}
+
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    particles.forEach(particle => {
+        particle.update();
+        particle.draw();
+    });
+
+    particles.forEach((p1, i) => {
+        particles.slice(i + 1).forEach(p2 => {
+            const dx = p1.x - p2.x;
+            const dy = p1.y - p2.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < 150) {
+                ctx.beginPath();
+                ctx.moveTo(p1.x, p1.y);
+                ctx.lineTo(p2.x, p2.y);
+                ctx.strokeStyle = `rgba(34, 197, 94, ${0.1 * (1 - distance/150)})`;
+                ctx.stroke();
+            }
+        });
+    });
+
+    requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+
+</body>
+</html>

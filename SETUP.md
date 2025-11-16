@@ -1,213 +1,244 @@
-# CyTutor Setup Documentation
+# CyTutor Setup Guide
 
-## 🎯 Project Overview
+## Quick Start
 
-CyTutor is a hands-on cybersecurity learning platform designed to provide interactive challenges and educational content similar to HackTheBox, TryHackMe, and PortSwigger Labs. This B.Tech Computer Science and Engineering (Cyber Security) project is developed by Team #06 at TIFAC-CORE in Cyber Security, Amrita School of Computing.
-
-## 📋 Prerequisites
-
-Before setting up CyTutor, ensure you have the following installed:
-
-- **Node.js** (v14 or higher)
-- **PostgreSQL** (v12 or higher)
-- **Git**
-- **Modern web browser** (Chrome, Firefox, Safari, Edge)
-
-## 🏗️ Project Structure
-
-```
-CyTutor/
-├── UI/                          # Frontend interface files
-│   ├── index.html              # Landing page
-│   ├── login.html              # User login page
-│   ├── signup.html             # User registration page
-│   ├── dashboard.html          # User dashboard
-│   ├── challenges.html         # Challenge listing page
-│   ├── domains.html            # Domain categorization
-│   └── cytutor_redesign.html   # Redesigned interface
-├── Challenges/                  # Security challenges directory
-│   ├── WEB/                    # Web security challenges
-│   │   └── secret/             # Example web challenge
-│   ├── DOS/                    # Denial of Service challenges
-│   └── Privilage_Escalation/   # Privilege escalation challenges
-├── README.md                   # Project documentation
-└── SETUP.md                    # This setup guide
-```
-
-## 🚀 Quick Start
-
-### 1. Clone the Repository
-
+### Windows
 ```bash
-git clone https://github.com/mstejas610/CyTutor.git
-cd CyTutor
-```
-
-### 2. Database Setup (PostgreSQL)
-
-```bash
-# Install PostgreSQL (Ubuntu/Debian)
-sudo apt update
-sudo apt install postgresql postgresql-contrib
-
-# Start PostgreSQL service
-sudo systemctl start postgresql
-sudo systemctl enable postgresql
-
-# Create database and user
-sudo -u postgres psql
-CREATE DATABASE cytutor;
-CREATE USER cytutor_user WITH ENCRYPTED PASSWORD 'your_secure_password';
-GRANT ALL PRIVILEGES ON DATABASE cytutor TO cytutor_user;
-\q
-```
-
-### 3. Backend Setup
-
-```bash
-# Navigate to backend directory
-cd backend
-
-# Install dependencies
-npm install
-
-# Create .env file from example
-cp .env.example .env
-
-# Edit .env with your database and email credentials
-nano .env
-```
-
-### 4. Start the Application
-
-**Using startup scripts:**
-
-On Linux/Mac:
-```bash
-bash start.sh
-```
-
-On Windows:
-```bash
+setup-dev.bat
 start.bat
 ```
 
-**Or manually:**
+### Linux/Mac
 ```bash
-cd backend
-npm start
+chmod +x setup-dev.sh start.sh
+./setup-dev.sh
+./start.sh
 ```
 
-Access the application at `http://localhost:5000`
+## Detailed Setup
 
-## 🔧 Development Workflow
+### 1. Prerequisites
+- Node.js 16+ and npm
+- (Optional) PostgreSQL for database
+- (Optional) SMTP credentials for emails
 
-### 1. Frontend Development
+### 2. Initial Setup
 
+Run the setup script:
 ```bash
-# Make changes to HTML/CSS/JS files in UI directory
-# The backend serves static files from UI directory
-# Restart the server to see changes
+# Windows
+setup-dev.bat
 
-cd backend
-npm run dev  # For auto-reload during development
+# Linux/Mac
+./setup-dev.sh
 ```
 
-### 2. Backend Development
+This will:
+- ✅ Check Node.js installation
+- ✅ Create `.env` file from template
+- ✅ Install npm dependencies
+- ✅ Create required directories (`UI/uploads/avatars`, `logs`)
+- ✅ Set up `.gitignore` for uploads
+
+### 3. Configure Environment
+
+Edit `backend/.env` with your settings:
+
+```env
+# Server
+PORT=5000
+NODE_ENV=development
+
+# JWT (REQUIRED)
+JWT_SECRET=your_secure_random_string_min_32_chars
+JWT_EXPIRE=24h
+
+# Database (Optional - for production)
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=cytutor_db
+DB_USER=cytutor_user
+DB_PASSWORD=your_password
+
+# Email (Optional - for welcome emails)
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=465
+SMTP_USER=your_email@gmail.com
+SMTP_PASS=your_app_password
+EMAIL_FROM="CyTutor <noreply@cytutor.com>"
+
+# Frontend
+FRONTEND_URL=http://localhost:5000
+```
+
+### 4. Start the Server
 
 ```bash
-# Navigate to backend directory
-cd backend
+# Windows
+start.bat
 
-# Start with auto-reload
+# Linux/Mac
+./start.sh
+```
+
+Server will start on: http://localhost:5000
+
+### 5. Development Mode (Auto-reload)
+
+```bash
+cd backend
 npm run dev
-
-# Run tests (if available)
-npm test
 ```
 
-## 📊 Database Schema
+## Features
 
-### Users Table
-```sql
-CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
-    email VARCHAR(255) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    name VARCHAR(255) NOT NULL,
-    otp VARCHAR(6),
-    otp_expiry TIMESTAMP,
-    verified BOOLEAN DEFAULT FALSE,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+### User Onboarding
+- ✅ OTP-based authentication
+- ✅ Multi-step profile completion
+- ✅ Avatar upload
+- ✅ Terms & privacy acceptance
+- ✅ Welcome email
+- ✅ Onboarding checklist
+
+### API Endpoints
+
+#### Authentication
+- `POST /api/auth/signup` - User registration
+- `POST /api/auth/verify-otp` - OTP verification
+- `POST /api/auth/login` - User login
+
+#### User Profile
+- `POST /api/user/complete-profile` - Complete profile with avatar
+- `GET /api/user/profile` - Get user profile
+- `PUT /api/user/profile` - Update profile
+
+#### Email
+- `POST /api/email/welcome` - Send welcome email
+- `POST /api/email/verify` - Send verification email
+
+## Directory Structure
+
+```
+CyTutor/
+├── backend/
+│   ├── config/          # Configuration files
+│   ├── middleware/      # Auth middleware
+│   ├── routes/          # API routes
+│   │   ├── auth.js      # Authentication
+│   │   ├── user.js      # User management
+│   │   └── email.js     # Email service
+│   ├── .env             # Environment variables
+│   ├── server.js        # Main server file
+│   └── package.json     # Dependencies
+├── UI/
+│   ├── uploads/
+│   │   └── avatars/     # User avatars
+│   ├── complete-profile.html
+│   ├── profile.html
+│   └── ...
+├── email-templates/
+│   └── welcome-email.html
+├── setup-dev.bat/sh     # Setup scripts
+└── start.bat/sh         # Start scripts
 ```
 
-## 🔐 Security Features
+## Email Configuration
 
-- **Password Hashing**: bcrypt with 12 rounds
-- **JWT Authentication**: Secure token-based authentication
-- **Rate Limiting**: 100 requests per 15 minutes
-- **Email OTP Verification**: 6-digit OTP with 10-minute expiry
-- **Security Headers**: Helmet.js for HTTP security headers
-- **CORS Protection**: Configured cross-origin resource sharing
-- **Input Validation**: express-validator for request validation
+### Gmail Setup
+1. Enable 2-Factor Authentication
+2. Generate App Password:
+   - Go to Google Account → Security
+   - App Passwords → Generate
+3. Use App Password in `.env`:
+   ```env
+   SMTP_USER=your_email@gmail.com
+   SMTP_PASS=your_16_char_app_password
+   ```
 
-## 📝 Features
+### Development Mode
+Emails are logged to console instead of being sent.
 
-### Current Features
-- User registration with email verification
-- OTP-based email verification
-- Secure JWT authentication
-- Protected dashboard and routes
-- Cybersecurity learning challenges
-- Multiple security domains (Web Security, Cryptography, Forensics, etc.)
+### Production Mode
+Set `NODE_ENV=production` to send real emails.
 
-### Future Enhancements
-- [ ] User progress tracking
-- [ ] Leaderboard system
-- [ ] Challenge hints system
-- [ ] Discussion forums
-- [ ] Mobile responsive design
-- [ ] Password reset functionality
+## Troubleshooting
 
-## 🤝 Contributing
-
-### Development Guidelines
-1. Follow consistent code formatting
-2. Test all changes locally before committing
-3. Write clear commit messages
-4. Update documentation for new features
-
-### Submitting Changes
+### Port Already in Use
 ```bash
-# Create a feature branch
-git checkout -b feature/new-feature
+# Windows
+netstat -ano | findstr :5000
+taskkill /PID <PID> /F
 
-# Make your changes
-git add .
-git commit -m "feat: add new feature"
-
-# Push changes
-git push origin feature/new-feature
-
-# Create a pull request on GitHub
+# Linux/Mac
+lsof -ti:5000 | xargs kill -9
 ```
 
-## 📞 Support & Contact
+### Dependencies Issues
+```bash
+cd backend
+rm -rf node_modules package-lock.json
+npm install
+```
 
-- **Team Lead**: [Sai Tejas M](https://github.com/mstejas610)
-- **Team Members**: 
-  - [Asrita NL](https://github.com/luckyasrita-16)
-  - [Chinni Nagasree Hansica](https://github.com/HansicaChinni)
-  - [Tangella Sree Chandan](https://github.com/sreechandan5956)
-- **Institution**: TIFAC-CORE in Cyber Security, Amrita School of Computing
-- **Mentor**: Sitaram Chamarty, Professor of Practice
+### Upload Directory Permissions
+```bash
+# Linux/Mac
+chmod -R 755 UI/uploads
+```
 
-## 📄 License
+### Email Not Sending
+- Check SMTP credentials
+- Verify Gmail App Password
+- Check firewall settings
+- Review console logs
 
-This project is part of academic coursework for B.Tech Computer Science and Engineering (Cyber Security) at Amrita Vishwa Vidyapeetham.
+## Testing
 
----
+### Test Profile Completion
+```bash
+curl -X POST http://localhost:5000/api/user/complete-profile \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -F "fullName=John Doe" \
+  -F "username=johndoe" \
+  -F "email=john@example.com" \
+  -F "experienceLevel=intermediate" \
+  -F "termsAccepted=true"
+```
 
-**Note**: This is an active development project. Some features mentioned in this documentation may not be fully implemented yet. Please refer to the current issues and roadmap for the latest development status.
+### Test Welcome Email
+```bash
+curl -X POST http://localhost:5000/api/email/welcome \
+  -H "Content-Type: application/json" \
+  -d '{"email":"user@example.com","name":"John Doe","username":"johndoe"}'
+```
+
+## Production Deployment
+
+1. Set environment variables:
+   ```env
+   NODE_ENV=production
+   PORT=5000
+   ```
+
+2. Use process manager:
+   ```bash
+   npm install -g pm2
+   pm2 start backend/server.js --name cytutor
+   pm2 save
+   pm2 startup
+   ```
+
+3. Set up reverse proxy (nginx/Apache)
+
+4. Enable HTTPS with SSL certificate
+
+## Support
+
+For issues or questions:
+- Check logs in `logs/` directory
+- Review backend console output
+- Check browser console for frontend errors
+
+## License
+
+MIT License - See LICENSE file for details

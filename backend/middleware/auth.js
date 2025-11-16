@@ -10,10 +10,13 @@ const authMiddleware = (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.userId = decoded.userId;
+    req.user = decoded; // Add full user object
     next();
   } catch (error) {
     return res.status(401).json({ error: 'Invalid token' });
   }
 };
 
+// Export both as default and named export
 module.exports = authMiddleware;
+module.exports.authenticateToken = authMiddleware;
